@@ -6,6 +6,6 @@
  */
 export default {
   API: {
-    test: '/'
+    test: '/api/test'
   }
 }

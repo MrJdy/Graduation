@@ -13,7 +13,7 @@ export default {
       msg: 'Welcome to Your Vue.js App'
     }
   },
-  created () {
+  mounted () {
     test().then((res) => {
       console.log(res)
     })
