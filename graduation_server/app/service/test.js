@@ -1,3 +1,9 @@
+/*
+ * @Author: 姜定一
+ * @Date: 2019-04-06 11:31:50
+ * @Last Modified by:   姜定一
+ * @Last Modified time: 2019-04-06 11:31:50
+ */
 'use strict';
 
 const Service = require('egg').Service;
@@ -24,7 +30,10 @@ class TestService extends Service {
   // 封装统一的调用检查函数，可以在查询、创建和更新等 Service 中复用
   checkSuccess(result) {
     if (result.status !== 200) {
-      const errorMsg = result.data && result.data.error_msg ? result.data.error_msg : 'unknown error';
+      const errorMsg =
+        result.data && result.data.error_msg
+          ? result.data.error_msg
+          : 'unknown error';
       this.ctx.throw(result.status, errorMsg);
     }
     if (!result.data.success) {
