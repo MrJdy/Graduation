@@ -91,9 +91,16 @@ export default {
         login({
           phone: this.form.phoneNumber
         }).then(res => {
-          console.log(res);
+          if (res.code === 0) {
+            console.log("登陆成功！");
+          } else {
+            Toast({
+              message: "系统错误",
+              position: "top",
+              duration: 2000
+            });
+          }
         });
-        console.log("登陆成功！");
       } else {
         Toast({
           message: "验证码错误，请重新输入。",
