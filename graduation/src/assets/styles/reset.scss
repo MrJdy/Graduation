@@ -107,7 +107,11 @@ nav,
 section {
   display: block;
 }
-
+div,
+p,
+section {
+  box-sizing: border-box;
+}
 body {
   line-height: 1;
 }

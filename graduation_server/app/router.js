@@ -1,8 +1,8 @@
 /*
  * @Author: 姜定一
  * @Date: 2019-04-06 11:31:59
- * @Last Modified by:   姜定一
- * @Last Modified time: 2019-04-06 11:31:59
+ * @Last Modified by: 姜定一
+ * @Last Modified time: 2019-04-07 13:58:15
  */
 'use strict';
 
@@ -11,6 +11,5 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  // router.post('/', controller.home.index);
-  router.post('/api/test', controller.test.create);
+  router.post('/api/login', controller.login.login);
 };
