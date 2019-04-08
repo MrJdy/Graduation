@@ -21,43 +21,43 @@
   </div>
 </template>
 <script>
-import { login } from "../../common/api/api.js";
-import { Toast } from "mint-ui";
+import { login } from '../../common/api/api.js';
+import { Toast } from 'mint-ui';
 export default {
-  data() {
+  data () {
     return {
       form: {
-        phoneNumber: "",
-        vCode: ""
+        phoneNumber: '',
+        vCode: ''
       },
-      checkCode: "",
+      checkCode: '',
       againGetCode: true,
       countDown: 60,
       disabled: true
     };
   },
   methods: {
-    createCode() {
-      let code = "";
-      let codeLength = 4; //验证码的长度
-      let random = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9); //随机数
+    createCode () {
+      let code = '';
+      let codeLength = 4; // 验证码的长度
+      let random = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // 随机数
       for (let i = 0; i < codeLength; i++) {
-        //循环操作
-        let index = Math.floor(Math.random() * 10); //取得随机数的索引（0~35）
-        code += random[index]; //根据索引取得随机数加到code上
+        // 循环操作
+        let index = Math.floor(Math.random() * 10); // 取得随机数的索引（0~35）
+        code += random[index]; // 根据索引取得随机数加到code上
       }
-      this.checkCode = code; //把code值赋给验证码
+      this.checkCode = code; // 把code值赋给验证码
     },
-    getCode() {
+    getCode () {
       // 获取用户输入手机号长度
-      let phoneNumber = this.form.phoneNumber.split("");
+      let phoneNumber = this.form.phoneNumber.split('');
       // 输入号码正确进行以下操作
       if (phoneNumber.length === 11) {
         // 生成验证码
         this.createCode();
         Toast({
           message: `您的验证码为 【 ${this.checkCode} 】`,
-          position: "top",
+          position: 'top',
           duration: 5000
         });
         // 出现倒计时文案，并进行倒计时逻辑
@@ -74,14 +74,14 @@ export default {
       } else {
         // 输入手机号码错误提示信息
         Toast({
-          message: "请输入正确的手机号码",
-          position: "top",
+          message: '请输入正确的手机号码',
+          position: 'top',
           duration: 3000
         });
       }
     },
     // 登陆逻辑
-    signIn() {
+    signIn () {
       // 当用户输入验证码和系统发送验证码相同则登陆成功
       if (
         this.form.vCode &&
@@ -89,22 +89,23 @@ export default {
         this.form.vCode === this.checkCode
       ) {
         login({
-          phone: this.form.phoneNumber
+          phone: this.form.phoneNumber,
+          userName: `用户_${this.form.phoneNumber.substring(7)}`
         }).then(res => {
           if (res.code === 0) {
-            console.log("登陆成功！");
+            console.log('登陆成功！');
           } else {
             Toast({
-              message: "系统错误",
-              position: "top",
+              message: '系统错误',
+              position: 'top',
               duration: 2000
             });
           }
         });
       } else {
         Toast({
-          message: "验证码错误，请重新输入。",
-          position: "top",
+          message: '验证码错误，请重新输入。',
+          position: 'top',
           duration: 3000
         });
       }

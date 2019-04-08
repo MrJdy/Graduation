@@ -434,6 +434,16 @@ ajv@^6.9.1:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
+ali-rds@^3.0.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/ali-rds/-/ali-rds-3.3.0.tgz#001ba1f4edf4555805f57ca272fe5c047aef992b"
+  integrity sha512-yPe6UR6YyjKxCQ983iFQVnetSx+9CjrfL3mWaz05yfVAzFgUCtwi6mq8HZFpDTO9LvYo6Ue5kBjheYtZjgFveQ==
+  dependencies:
+    co-wrap-all "^1.0.0"
+    debug "^2.2.0"
+    mysql "^2.13.0"
+    pify "^2.3.0"
+
 amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
@@ -1477,6 +1487,11 @@ base@^0.11.1:
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
 
+bignumber.js@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-4.1.0.tgz#db6f14067c140bd46624815a7916c92d9b6c24b1"
+  integrity sha512-eJzYkFYy9L4JzXsbymsFn3p54D+llV27oTQ+ziJG7WFRheJcNZilgVXMG0LoZtlQSKBsJdWtLFqOD0u+U0jZKA==
+
 binary-extensions@^1.0.0:
   version "1.13.1"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.13.1.tgz#598afe54755b2868a5330d2aff9d4ebb53209b65"
@@ -1839,6 +1854,13 @@ co-mocha@^1.2.2:
   dependencies:
     co "^4.0.0"
     is-generator "^1.0.1"
+
+co-wrap-all@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/co-wrap-all/-/co-wrap-all-1.0.0.tgz#370ae3e8333510a53f6b2f7fdfbe4568a11b7ecf"
+  integrity sha1-Nwrj6DM1EKU/ay9/375FaKEbfs8=
+  dependencies:
+    co "^4.0.0"
 
 co@^4.0.0, co@^4.6.0:
   version "4.6.0"
@@ -2544,6 +2566,13 @@ egg-multipart@^2.4.0:
     stream-wormhole "^1.1.0"
     uuid "^3.3.2"
 
+egg-mysql@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/egg-mysql/-/egg-mysql-3.0.0.tgz#67d0a559cd909fab52682dc687d56a6595ccd699"
+  integrity sha1-Z9ClWc2Qn6tSaC3Gh9VqZZXM1pk=
+  dependencies:
+    ali-rds "^3.0.0"
+
 egg-onerror@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/egg-onerror/-/egg-onerror-2.1.0.tgz#e05dc08e39aec16518b64053b8bc874110aba9f7"
@@ -2654,6 +2683,13 @@ egg-utils@^2.4.0, egg-utils@^2.4.1:
   dependencies:
     mkdirp "^0.5.1"
     utility "^1.13.1"
+
+egg-validate@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/egg-validate/-/egg-validate-2.0.2.tgz#c236c730a3730fe4e0655e1a2799398178ab3dd3"
+  integrity sha512-pUTfMTHQSpzDKAWkH19ZpyQBK22UToAwNWIgW1eXCAMpz+qvULuI5ey7dgqGQ/ZNwV2w/Stg96BrzW5uigCuVg==
+  dependencies:
+    parameter "^3.0.0"
 
 egg-view@^2.1.2:
   version "2.1.2"
@@ -4840,6 +4876,16 @@ mute-stream@0.0.7:
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s=
 
+mysql@^2.13.0:
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/mysql/-/mysql-2.16.0.tgz#b23b22ab5de44fc2d5d32bd4f5af6653fc45e2ba"
+  integrity sha512-dPbN2LHonQp7D5ja5DJXNbCLe/HRdu+f3v61aguzNRQIrmZLOeRoymBYyeThrR6ug+FqzDL95Gc9maqZUJS+Gw==
+  dependencies:
+    bignumber.js "4.1.0"
+    readable-stream "2.3.6"
+    safe-buffer "5.1.2"
+    sqlstring "2.3.1"
+
 mz-modules@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/mz-modules/-/mz-modules-2.1.0.tgz#7f529877afd0d42f409a7463b96986d61cfbcf96"
@@ -5298,6 +5344,11 @@ param-case@^2.1.0:
   dependencies:
     no-case "^2.2.0"
 
+parameter@^3.0.0:
+  version "3.5.0"
+  resolved "https://registry.yarnpkg.com/parameter/-/parameter-3.5.0.tgz#dc931ee63f693c8c407543611c45d53d1e34e9cc"
+  integrity sha512-4Qvso6mOY44O52yHunZrIW5C58J1TY9mFu9i1Drwa1H7tu9uhus35AZcGxPsLpnIUb3XtvaCsDgilVH+z1uZCQ==
+
 parent-module@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/parent-module/-/parent-module-1.0.1.tgz#691d2709e78c79fae3a156622452d00762caaaa2"
@@ -5419,7 +5470,7 @@ pause-stream@0.0.11:
   dependencies:
     through "~2.3"
 
-pify@^2.0.0:
+pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
   integrity sha1-7RQaasBDqEnqWISY59yosVMw6Qw=
@@ -5760,16 +5811,7 @@ readable-stream@1.1.x:
     isarray "0.0.1"
     string_decoder "~0.10.x"
 
-readable-stream@3:
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.3.0.tgz#cb8011aad002eb717bf040291feba8569c986fb9"
-  integrity sha512-EsI+s3k3XsW+fU8fQACLN59ky34AZ14LoeVZpYwmZvldCFo0r0gnelwF2TcMjLor/BTL5aDJVBMkss0dthToPw==
-  dependencies:
-    inherits "^2.0.3"
-    string_decoder "^1.1.1"
-    util-deprecate "^1.0.1"
-
-readable-stream@^2.0.0, readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.3.5, readable-stream@~2.3.6:
+readable-stream@2.3.6, readable-stream@^2.0.0, readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.3.5, readable-stream@~2.3.6:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
   integrity sha512-tQtKA9WIAhBF3+VLAseyMqZeBjW0AHJoxOtYqSUZNJxauErmLbVm2FW1y+J/YA9dUrAC39ITejlZWhVIwawkKw==
@@ -5781,6 +5823,15 @@ readable-stream@^2.0.0, readable-stream@^2.0.2, readable-stream@^2.0.6, readable
     safe-buffer "~5.1.1"
     string_decoder "~1.1.1"
     util-deprecate "~1.0.1"
+
+readable-stream@3:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.3.0.tgz#cb8011aad002eb717bf040291feba8569c986fb9"
+  integrity sha512-EsI+s3k3XsW+fU8fQACLN59ky34AZ14LoeVZpYwmZvldCFo0r0gnelwF2TcMjLor/BTL5aDJVBMkss0dthToPw==
+  dependencies:
+    inherits "^2.0.3"
+    string_decoder "^1.1.1"
+    util-deprecate "^1.0.1"
 
 readdirp@^2.2.1:
   version "2.2.1"
@@ -6286,6 +6337,11 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
   integrity sha1-BOaSb2YolTVPPdAVIDYzuFcpfiw=
+
+sqlstring@2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/sqlstring/-/sqlstring-2.3.1.tgz#475393ff9e91479aea62dcaf0ca3d14983a7fb40"
+  integrity sha1-R1OT/56RR5rqYtyvDKPRSYOn+0A=
 
 stack-trace@^0.0.10:
   version "0.0.10"

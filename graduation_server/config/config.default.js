@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-06 11:32:18
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-07 10:39:47
+ * @Last Modified time: 2019-04-08 15:36:36
  */
 /* eslint valid-jsdoc: "off" */
 
@@ -59,13 +59,13 @@ module.exports = appInfo => {
     // 单数据库信息配置
     client: {
       // host
-      host: 'localhost',
+      host: '39.107.121.241',
       // 端口号
       port: '3306',
       // 用户名
       user: 'root',
       // 密码
-      password: '123',
+      password: 'Jdy()001',
       // 数据库名
       database: 'graduation',
     },
