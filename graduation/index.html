@@ -20,7 +20,7 @@
         win.addEventListener(resizeEvt, recalc, false);
         doc.addEventListener("DOMContentLoaded", recalc, false);
       })(document, window);
-      window.onload = function() {
+      window.addEventListener("load", () => {
         document.addEventListener("touchstart", function(event) {
           if (event.touches.length > 1) {
             event.preventDefault();
@@ -38,7 +38,7 @@
           },
           false
         );
-      };
+      });
     </script>
     <style>
       body {
