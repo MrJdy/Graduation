@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-07 10:26:59
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-08 15:59:19
+ * @Last Modified time: 2019-04-09 23:56:46
  */
 
 'use strict';
@@ -10,15 +10,36 @@ const Service = require('egg').Service;
 
 class Login extends Service {
   async login(data) {
-    // 插入
-    console.log(data);
-    const result = await this.app.mysql.insert('userInfo', {
+    // 通过用户输入手机号查询，获取查询结果
+    const queryResult = await this.app.mysql.get('userInfo', {
       phone_num: data.phone,
-      user_name: data.userName,
     });
-    // 判断插入成功
-    const insertSuccess = result.affectedRows === 1;
-    return insertSuccess;
+    // 如果没有注册过自动为其注册
+    if (!queryResult) {
+      // 插入一条数据
+      const result = await this.app.mysql.insert('userInfo', {
+        phone_num: data.phone,
+        user_name: data.userName,
+        user_avatar:
+          'https://wx4.sinaimg.cn/mw1024/006xTNWLly1g1wra9c3ivj30b40b4mxa.jpg',
+      });
+      // 判断插入成功
+      const status = result.affectedRows === 1;
+      // 插入数据后，查询数据。
+      const queryData = await this.app.mysql.get('userInfo', {
+        phone_num: data.phone,
+      });
+      // 将查询到的用户数据返回到客户端。
+      return {
+        status,
+        data: queryData,
+      };
+    }
+    // 已注册过，直接登录，并将用户数据返回给客户端。
+    return {
+      status: true,
+      data: queryResult,
+    };
   }
 }
 module.exports = Login;

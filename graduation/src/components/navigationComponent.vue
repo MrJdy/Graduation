@@ -1,42 +1,38 @@
 <template>
   <div class="nav-container border-top">
-    <div class="item-wrap" @click="checkout(0)">
+    <router-link to="/position" class="item-wrap">
       <span
         :class="selectActive === 0 ? 'iconfont icon icon-1 active' : 'iconfont icon icon-1'"
       >&#xe638;</span>
       <span class="title">职位</span>
-    </div>
-    <div class="item-wrap" @click="checkout(1)">
+    </router-link>
+    <router-link to="/company" class="item-wrap">
       <span
         :class="selectActive === 1 ? 'iconfont icon icon-2 active' : 'iconfont icon icon-2'"
       >&#xe618;</span>
       <span class="title">公司</span>
-    </div>
-    <div class="item-wrap" @click="checkout(2)">
+    </router-link>
+    <router-link to="/message" class="item-wrap">
       <span
         :class="selectActive === 2 ? 'iconfont icon icon-3 active' : 'iconfont icon icon-3'"
       >&#xe61c;</span>
       <span class="title">信息</span>
-    </div>
-    <div class="item-wrap" @click="checkout(3)">
+    </router-link>
+    <router-link to="/mine" class="item-wrap">
       <span
         :class="selectActive === 3 ? 'iconfont icon icon-4 active' : 'iconfont icon icon-4'"
       >&#xe616;</span>
       <span class="title">我的</span>
-    </div>
+    </router-link>
   </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      selectActive: 0
-    };
-  },
-  methods: {
-    checkout(index) {
-      this.selectActive = index;
+  props: {
+    selectActive: {
+      type: Number,
+      default: 0
     }
   }
 };

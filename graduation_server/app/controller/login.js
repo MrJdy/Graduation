@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-07 10:40:25
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-07 23:35:28
+ * @Last Modified time: 2019-04-09 23:42:46
  */
 
 'use strict';
@@ -13,7 +13,8 @@ class LoginController extends Controller {
     const ctx = this.ctx;
     const result = await ctx.service.login.login(ctx.request.body);
     ctx.body = {
-      status: result,
+      status: result.status,
+      data: result.data,
       code: 0,
     };
   }

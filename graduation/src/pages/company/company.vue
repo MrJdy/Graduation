@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div>职位</div>
+    <div>公司</div>
     <header-top></header-top>
-    <navigation :selectActive="0"></navigation>
+    <navigation :selectActive="1"></navigation>
   </div>
 </template>
 
