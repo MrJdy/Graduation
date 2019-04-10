@@ -10,12 +10,15 @@ import './assets/styles/border.scss';
 import './assets/styles/reset.scss';
 import './assets/styles/iconfont.css';
 
+import store from './store';
+
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 });

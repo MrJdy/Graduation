@@ -1,7 +1,13 @@
+/*
+ * @Author: 姜定一
+ * @Date: 2019-04-08 15:11:40
+ * @Last Modified by:   姜定一
+ * @Last Modified time: 2019-04-10 15:11:40
+ */
 <template>
   <div class="login-container">
     <div class="form-wrapper">
-      <h3 class="title">BOSS直聘</h3>
+      <h3 class="title">用户登录</h3>
       <ul class="input-list">
         <li class="phone">
           <span class="pull-left input-before area-code">+86</span>
@@ -20,44 +26,58 @@
     </div>
   </div>
 </template>
+
 <script>
-import { login } from "../../common/api/api.js";
-import { Toast } from "mint-ui";
+import { login } from '../../common/api/api.js';
+import { Toast } from 'mint-ui';
+import { setCookie, isLogin } from '../../common/lib/helper.js';
 export default {
-  data() {
+  data () {
     return {
       form: {
-        phoneNumber: "",
-        vCode: ""
+        phoneNumber: '',
+        vCode: ''
       },
-      checkCode: "",
+      checkCode: '',
       againGetCode: true,
       countDown: 60,
       disabled: true
     };
   },
+  created () {
+    // 检查用户是否为登录状态
+    if (isLogin()) {
+      this.$router.push({ path: '/position' });
+    }
+  },
   methods: {
-    createCode() {
-      let code = "";
-      let codeLength = 4; // 验证码的长度
-      let random = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]; // 随机数
+    // 生成验证码
+    createCode () {
+      let code = '';
+      // 验证码的长度
+      let codeLength = 4;
+      // 随机数
+      let random = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+      // 循环随机取每一个数字来组成验证码
       for (let i = 0; i < codeLength; i++) {
-        // 循环操作
-        let index = Math.floor(Math.random() * 10); // 取得随机数的索引（0~35）
-        code += random[index]; // 根据索引取得随机数加到code上
+        // 取得随机数的索引（0~9）
+        let index = Math.floor(Math.random() * 10);
+        // 根据索引取得随机数加到code上
+        code += random[index];
       }
-      this.checkCode = code; // 把code值赋给验证码
+      // 把code值赋给验证码
+      this.checkCode = code;
     },
-    getCode() {
+    getCode () {
       // 获取用户输入手机号长度
-      let phoneNumber = this.form.phoneNumber.split("");
+      let phoneNumber = this.form.phoneNumber.split('');
       // 输入号码正确进行以下操作
       if (phoneNumber.length === 11) {
         // 生成验证码
         this.createCode();
         Toast({
           message: `您的验证码为 【 ${this.checkCode} 】`,
-          position: "top",
+          position: 'top',
           duration: 5000
         });
         // 出现倒计时文案，并进行倒计时逻辑
@@ -74,38 +94,42 @@ export default {
       } else {
         // 输入手机号码错误提示信息
         Toast({
-          message: "请输入正确的手机号码",
-          position: "top",
+          message: '请输入正确的手机号码',
+          position: 'top',
           duration: 3000
         });
       }
     },
     // 登陆逻辑
-    signIn() {
+    signIn () {
       // 当用户输入验证码和系统发送验证码相同则登陆成功
       if (
         this.form.vCode &&
         this.checkCode &&
         this.form.vCode === this.checkCode
       ) {
+        // 调取登录接口
         login({
           phone: this.form.phoneNumber,
           userName: `用户_${this.form.phoneNumber.substring(7)}`
         }).then(res => {
+          // 判断是否登录成功
           if (res.code === 0) {
-            this.$router.push({ path: "/position" });
+            // 登录验证通过，设置token
+            setCookie('token', this.form.phoneNumber, 10);
+            this.$router.push({ path: '/position' });
           } else {
             Toast({
-              message: "系统错误",
-              position: "top",
+              message: '系统错误',
+              position: 'top',
               duration: 2000
             });
           }
         });
       } else {
         Toast({
-          message: "验证码错误，请重新输入。",
-          position: "top",
+          message: '验证码错误，请重新输入。',
+          position: 'top',
           duration: 3000
         });
       }

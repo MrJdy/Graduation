@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-07 10:26:59
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-09 23:56:46
+ * @Last Modified time: 2019-04-10 13:38:06
  */
 
 'use strict';
@@ -25,21 +25,11 @@ class Login extends Service {
       });
       // 判断插入成功
       const status = result.affectedRows === 1;
-      // 插入数据后，查询数据。
-      const queryData = await this.app.mysql.get('userInfo', {
-        phone_num: data.phone,
-      });
       // 将查询到的用户数据返回到客户端。
-      return {
-        status,
-        data: queryData,
-      };
+      return status;
     }
     // 已注册过，直接登录，并将用户数据返回给客户端。
-    return {
-      status: true,
-      data: queryResult,
-    };
+    return true;
   }
 }
 module.exports = Login;

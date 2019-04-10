@@ -6,12 +6,13 @@
   float: right;
 }
 
-.clearFix::after {
-  display: block;
-  clear: both;
+.clearFix:after {
   content: "";
-  visibility: hidden;
+  display: block;
+  line-height: 0;
   height: 0;
+  visibility: hidden;
+  clear: both;
 }
 .clearFix {
   zoom: 1;
