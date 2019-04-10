@@ -2,13 +2,14 @@
  * @Author: 姜定一
  * @Date: 2019-04-09 23:18:50
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-10 16:29:14
+ * @Last Modified time: 2019-04-10 17:22:53
  */
 <template>
   <div class="mine-container">
     <div class="head-wrapper">
       <div class="top-bar">
-        <span class="iconfont pull-left icon-1">&#xe69a;</span>
+        <label for="camera" class="iconfont pull-left icon-1">&#xe69a;</label>
+        <input capture='camera' type="file" accept="image/*" id="camera" style="display: none">
         <span class="iconfont pull-right icon-2">&#xe60d;</span>
       </div>
       <div class="user-name pull-left clearFix">姜定一</div>
