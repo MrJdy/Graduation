@@ -12,18 +12,16 @@
 </template>
 
 <script>
-import Navigation from '../../components/navigationComponent';
-import HeaderTop from '../../components/headComponent';
-import { isLogin } from '../../common/lib/helper.js';
+import Navigation from "../../components/navigationComponent";
+import { isLogin } from "../../common/lib/helper.js";
 
 export default {
   components: {
-    Navigation,
-    HeaderTop
+    Navigation
   },
-  created () {
+  created() {
     if (!isLogin()) {
-      this.$router.push({ path: '/' });
+      this.$router.push({ path: "/" });
     }
   }
 };
@@ -38,8 +36,10 @@ export default {
     line-height: 1.3rem;
     background: #53cac3;
     color: #ffffff;
-    font-size: .3rem;
+    font-size: 0.3rem;
     text-align: center;
+    position: fixed;
+    top: 0;
   }
 }
 </style>

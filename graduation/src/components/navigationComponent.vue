@@ -54,6 +54,7 @@ export default {
 .nav-container {
   width: 7.5rem;
   height: 1.31rem;
+  background: #ffffff;
   position: fixed;
   bottom: 0;
   display: flex;
