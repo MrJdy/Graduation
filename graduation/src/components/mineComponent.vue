@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-12 16:49:55
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-12 16:57:02
+ * @Last Modified time: 2019-04-12 21:32:22
  */
 
 <template>
@@ -46,7 +46,7 @@
           <span class="iconfont pull-left icon-2">&#xe646;</span>
           <span class="item-name pull-left">附件简历</span>
           <span class="iconfont arrow pull-right">&#xe60e;</span>
-        </div> -->
+        </div>-->
         <div class="menu-item border-bottom">
           <span class="iconfont pull-left icon-2">&#xe662;</span>
           <span class="item-name pull-left">关注公司</span>
@@ -87,7 +87,7 @@ export default {
     loginOut () {
       MessageBox.confirm('', {
         title: '提示',
-        message: '确定要退出登录?',
+        message: '确定要退出登录吗?',
         confirmButtonClass: 'confirm-ok',
         cancelButtonClass: 'confirm-cancel'
       }).then(action => {
@@ -139,7 +139,7 @@ export default {
       color: #ffffff;
       font-size: 0.5rem;
       font-weight: bold;
-      margin-top: .3rem;
+      margin-top: 0.3rem;
     }
     .mine-home {
       height: 0.5rem;
