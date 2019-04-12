@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-09 23:11:57
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-10 16:42:07
+ * @Last Modified time: 2019-04-12 16:44:43
  */
 <template>
   <div class="message-container">
@@ -12,16 +12,16 @@
 </template>
 
 <script>
-import Navigation from "../../components/navigationComponent";
-import { isLogin } from "../../common/lib/helper.js";
+import Navigation from '../../../components/navigationComponent';
+import { isLogin } from '../../../common/lib/helper.js';
 
 export default {
   components: {
     Navigation
   },
-  created() {
+  created () {
     if (!isLogin()) {
-      this.$router.push({ path: "/" });
+      this.$router.push({ path: '/' });
     }
   }
 };

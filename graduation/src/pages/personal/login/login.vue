@@ -1,8 +1,8 @@
 /*
  * @Author: 姜定一
  * @Date: 2019-04-08 15:11:40
- * @Last Modified by:   姜定一
- * @Last Modified time: 2019-04-10 15:11:40
+ * @Last Modified by: 姜定一
+ * @Last Modified time: 2019-04-12 16:42:51
  */
 <template>
   <div class="login-container">
@@ -28,9 +28,9 @@
 </template>
 
 <script>
-import { login } from '../../common/api/api.js';
+import { login } from '../../../common/api/api.js';
 import { Toast } from 'mint-ui';
-import { setCookie, isLogin } from '../../common/lib/helper.js';
+import { setCookie, isLogin } from '../../../common/lib/helper.js';
 export default {
   data () {
     return {

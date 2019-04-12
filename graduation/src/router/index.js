@@ -2,15 +2,15 @@
  * @Author: 姜定一
  * @Date: 2019-04-06 11:17:09
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-09 23:12:39
+ * @Last Modified time: 2019-04-12 16:43:42
  */
 import Vue from 'vue';
 import Router from 'vue-router';
-import Login from '../pages/login/login';
-import Position from '../pages/position/position';
-import Company from '../pages/company/company';
-import Message from '../pages/message/message';
-import Mine from '../pages/mine/mine';
+import Login from '../pages/personal/login/login';
+import Position from '../pages/personal/position/position';
+import Company from '../pages/personal/company/company';
+import Message from '../pages/personal/message/message';
+import Mine from '../pages/personal/mine/mine';
 
 Vue.use(Router);
 

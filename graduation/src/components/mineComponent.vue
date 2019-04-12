@@ -1,9 +1,10 @@
 /*
  * @Author: 姜定一
- * @Date: 2019-04-09 23:18:50
+ * @Date: 2019-04-12 16:49:55
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-10 17:22:53
+ * @Last Modified time: 2019-04-12 16:57:02
  */
+
 <template>
   <div class="mine-container">
     <div class="head-wrapper">
@@ -12,8 +13,8 @@
         <input capture="camera" type="file" accept="image/*" id="camera" style="display: none">
         <span class="iconfont pull-right icon-2">&#xe60d;</span>
       </div>
-      <div class="user-name pull-left clearFix">姜定一</div>
-      <pre class="mine-home">我的个人主页 <span class="iconfont">&#xe60e;</span></pre>
+      <div class="user-name pull-left clearFix">{{userData.user_name}}</div>
+      <!-- <pre class="mine-home">编辑我的信息 <span class="iconfont">&#xe60e;</span></pre> -->
       <img class="mine-avatar" :src="userData.user_avatar">
     </div>
     <div class="mine-nav-wrap">
@@ -38,50 +39,66 @@
       <div class="menu-wrap">
         <div class="menu-item border-bottom">
           <span class="iconfont pull-left icon-1">&#xe606;</span>
-          <span class="item-name pull-left">我的微简历</span>
+          <span class="item-name pull-left">我的简历</span>
           <span class="iconfont arrow pull-right">&#xe60e;</span>
         </div>
-        <div class="menu-item border-bottom">
+        <!-- <div class="menu-item border-bottom">
           <span class="iconfont pull-left icon-2">&#xe646;</span>
           <span class="item-name pull-left">附件简历</span>
           <span class="iconfont arrow pull-right">&#xe60e;</span>
-        </div>
+        </div> -->
         <div class="menu-item border-bottom">
           <span class="iconfont pull-left icon-2">&#xe662;</span>
           <span class="item-name pull-left">关注公司</span>
           <span class="iconfont arrow pull-right">&#xe60e;</span>
         </div>
-        <div class="menu-item">
+        <div class="menu-item border-bottom">
           <span class="iconfont pull-left icon-2">&#xe648;</span>
           <span class="item-name pull-left">收藏职位</span>
           <span class="iconfont arrow pull-right">&#xe60e;</span>
         </div>
+        <div class="menu-item border-bottom">
+          <span class="iconfont pull-left icon-2">&#xe6b8;</span>
+          <span class="item-name pull-left">切换身份</span>
+          <span class="iconfont arrow pull-right">&#xe60e;</span>
+        </div>
+        <div class="menu-item" @click="loginOut">
+          <span class="iconfont pull-left icon-2">&#xe608;</span>
+          <span class="item-name pull-left">退出登录</span>
+          <span class="iconfont arrow pull-right">&#xe60e;</span>
+        </div>
       </div>
     </div>
-    <navigation :selectActive="3"></navigation>
   </div>
 </template>
 
 <script>
-import Navigation from "../../components/navigationComponent";
-import { getCookie, isLogin } from "../../common/lib/helper.js";
-import { userInfo } from "../../common/api/api.js";
+import { deleteCookie } from '../common/lib/helper.js';
+import { MessageBox } from 'mint-ui';
 
 export default {
-  components: {
-    Navigation
+  props: {
+    userData: {
+      type: Object
+    }
   },
-  data() {
-    return {
-      userData: {}
-    };
-  },
-  created() {
-    if (!isLogin()) {
-      this.$router.push({ path: "/" });
-    } else {
-      userInfo({ phone: getCookie("token") }).then(res => {
-        this.userData = res.data;
+  methods: {
+    // 退出登录
+    loginOut () {
+      MessageBox.confirm('', {
+        title: '提示',
+        message: '确定要退出登录?',
+        confirmButtonClass: 'confirm-ok',
+        cancelButtonClass: 'confirm-cancel'
+      }).then(action => {
+        if (action === 'confirm') {
+          deleteCookie('token');
+          this.$router.push({ path: '/' });
+          // 退出登录时刷新页面，清除缓存，防止再次登录后页面仍缓存上一次的数据。
+          location.reload(true);
+        }
+      }).catch(action => {
+        return 0;
       });
     }
   }
@@ -122,6 +139,7 @@ export default {
       color: #ffffff;
       font-size: 0.5rem;
       font-weight: bold;
+      margin-top: .3rem;
     }
     .mine-home {
       height: 0.5rem;
