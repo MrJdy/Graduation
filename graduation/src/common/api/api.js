@@ -16,3 +16,11 @@ export function login (data) {
 export function userInfo (data) {
   return buildPostPromise(API.userInfo, data);
 }
+
+export function editPosition (data) {
+  return buildPostPromise(API.editPosition, data);
+}
+
+export function editCompany (data) {
+  return buildPostPromise(API.editCompany, data);
+}

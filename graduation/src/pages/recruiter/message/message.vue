@@ -1,30 +1,17 @@
-/*
- * @Author: 姜定一
- * @Date: 2019-04-08 15:19:14
- * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-12 22:26:20
- */
 <template>
-  <div class="position-container">
+  <div class="message-container">
     <div class="head-container">
-      <div class="head-title pull-left">web前端</div>
-      <div class="iconfont pull-right">&#xe601;</div>
+      <router-link to='/hr-mine' class="iconfont pull-left">&#xe677;</router-link>
+      <div class="head-title">我的消息</div>
     </div>
-    <position-card :isPersonal="true" v-for="(item, index) in 10" :key="index"></position-card>
-    <navigation :selectActive="0"></navigation>
   </div>
 </template>
 
 <script>
-import PositionCard from '../../../components/positionCardComponent';
-import Navigation from '../../../components/navigationComponent';
 import { isLogin } from '../../../common/lib/helper.js';
 
 export default {
-  components: {
-    PositionCard,
-    Navigation
-  },
+  components: {},
   created () {
     if (!isLogin()) {
       this.$router.push({ path: '/' });
@@ -34,10 +21,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.position-container {
+.message-container {
   width: 7.5rem;
-  padding: 1rem 0 1.31rem 0;
-  font-family: "微软雅黑";
   .head-container {
     width: 7.5rem;
     height: 1rem;
@@ -55,6 +40,10 @@ export default {
       color: #ffffff;
       font-size: 0.28rem;
       font-family: "微软雅黑";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
     .iconfont {
       height: 1rem;

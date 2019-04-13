@@ -13,4 +13,6 @@ module.exports = app => {
   const { router, controller } = app;
   router.post('/api/login', controller.login.login);
   router.post('/api/user-info', controller.userInfo.userInfo);
+  router.post('/api/hr/edit-position', controller.editInfo.editPosition);
+  router.post('/api/hr/edit-company', controller.editInfo.editCompany);
 };

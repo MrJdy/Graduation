@@ -27,9 +27,15 @@ export function deleteCookie (name) {
   }
 }
 
+// 判断是否为登录状态
 export function isLogin () {
   if (getCookie('token')) {
     return true;
   }
   return false;
+}
+
+// 刷新页面
+export function refresh () {
+  location.reload(true);
 }

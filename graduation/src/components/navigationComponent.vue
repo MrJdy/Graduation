@@ -22,7 +22,7 @@
       <span
         :class="selectActive === 2 ? 'iconfont icon icon-3 active' : 'iconfont icon icon-3'"
       >&#xe61c;</span>
-      <span class="title">信息</span>
+      <span class="title">消息</span>
     </router-link>
     <router-link to="/mine" class="item-wrap">
       <span

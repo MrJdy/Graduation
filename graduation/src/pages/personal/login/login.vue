@@ -29,7 +29,7 @@
 
 <script>
 import { login } from '../../../common/api/api.js';
-import { Toast } from 'mint-ui';
+import { Toast, Indicator } from 'mint-ui';
 import { setCookie, isLogin } from '../../../common/lib/helper.js';
 export default {
   data () {
@@ -108,6 +108,9 @@ export default {
         this.checkCode &&
         this.form.vCode === this.checkCode
       ) {
+        Indicator.open({
+          spinnerType: 'triple-bounce'
+        });
         // 调取登录接口
         login({
           phone: this.form.phoneNumber,
@@ -115,6 +118,7 @@ export default {
         }).then(res => {
           // 判断是否登录成功
           if (res.code === 0) {
+            Indicator.close();
             // 登录验证通过，设置token
             setCookie('token', this.form.phoneNumber, 10);
             this.$router.push({ path: '/position' });
@@ -148,7 +152,7 @@ export default {
   .form-wrapper {
     width: 6.75rem;
     position: absolute;
-    top: 15%;
+    top: 17%;
     left: 50%;
     -webkit-transform: translateX(-50%);
     transform: translateX(-50%);

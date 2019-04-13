@@ -11,6 +11,11 @@ import Position from '../pages/personal/position/position';
 import Company from '../pages/personal/company/company';
 import Message from '../pages/personal/message/message';
 import Mine from '../pages/personal/mine/mine';
+import HrMine from '../pages/recruiter/mine/mine';
+import HrPosition from '../pages/recruiter/position/position';
+import HrMessage from '../pages/recruiter/message/message';
+import EditPosition from '../pages/recruiter/position/editPosition';
+import EditCompany from '../pages/recruiter/company/editCompany';
 
 Vue.use(Router);
 
@@ -40,6 +45,31 @@ export default new Router({
       path: '/mine',
       name: 'Mine',
       component: Mine
+    },
+    {
+      path: '/hr-mine',
+      name: 'HrMine',
+      component: HrMine
+    },
+    {
+      path: '/hr-position',
+      name: 'HrPosition',
+      component: HrPosition
+    },
+    {
+      path: '/edit-position',
+      name: 'EditPosition',
+      component: EditPosition
+    },
+    {
+      path: '/edit-company',
+      name: 'EditCompany',
+      component: EditCompany
+    },
+    {
+      path: '/hr-message',
+      name: 'HrMessage',
+      component: HrMessage
     }
   ]
 });

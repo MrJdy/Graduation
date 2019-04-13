@@ -7,6 +7,8 @@
 export default {
   API: {
     login: '/api/login',
-    userInfo: '/api/user-info'
+    userInfo: '/api/user-info',
+    editPosition: '/api/hr/edit-position',
+    editCompany: '/api/hr/edit-company'
   }
 };
