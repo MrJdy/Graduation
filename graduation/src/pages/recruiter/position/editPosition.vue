@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:38:17
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 09:43:39
+ * @Last Modified time: 2019-04-14 18:59:13
  */
 <template>
   <div class="edit-position">
@@ -12,6 +12,7 @@
       </router-link>
       <div class="save pull-right" @click="submitForm">保存</div>
     </div>
+    <mt-field label="职位名称" placeholder="请输入职位名称" v-model="form.name"></mt-field>
     <mt-field label="工资范围" placeholder="请输入工资范围" v-model="form.salary"></mt-field>
     <mt-field label="工作经验" placeholder="请输入工作经验" v-model="form.workTime"></mt-field>
     <mt-field label="学历要求" placeholder="请输入学历要求" v-model="form.education"></mt-field>
@@ -27,10 +28,10 @@
 </template>
 
 <script>
+import { editPosition, queryCompany } from '../../../common/api/api';
+import { uuid, getCookie } from '../../../common/lib/helper';
 import { Field, Toast } from 'mint-ui';
 import Vue from 'vue';
-
-import { editPosition } from '../../../common/api/api';
 
 Vue.component(Field.name, Field);
 
@@ -38,26 +39,45 @@ export default {
   data () {
     return {
       form: {
+        name: '',
         salary: '',
         workTime: '',
         education: '',
         description: '',
         require: ''
       },
-      validateMsg: ''
+      validateMsg: '',
+      companyId: '',
+      positionId: ''
     };
   },
   created () {
+    let phone = getCookie('token');
+    queryCompany({ phone }).then((res) => {
+      if (res.code === 0) {
+        this.companyId = res.data.company_id;
+      }
+    });
     // 编辑时初始化数据
-    this.form.salary = 100;
+    if (this.$route.query.data) {
+      let data = JSON.parse(this.$route.query.data);
+      this.positionId = data.position_id;
+      this.form.name = data.position_name;
+      this.form.salary = data.position_salary;
+      this.form.workTime = data.position_time;
+      this.form.education = data.position_education;
+      this.form.description = data.position_details;
+      this.form.require = data.position_require;
+    }
   },
   methods: {
     formValidate () {
-      this.validateMsg = this.form.salary ? '' : '表单不能为空';
-      this.validateMsg = this.form.workTime ? '' : '表单不能为空';
-      this.validateMsg = this.form.education ? '' : '表单不能为空';
-      this.validateMsg = this.form.description ? '' : '表单不能为空';
-      this.validateMsg = this.form.require ? '' : '表单不能为空';
+      this.validateMsg = this.form.name ? '' : '您有没填写的项哦~';
+      this.validateMsg = this.form.salary ? '' : '您有没填写的项哦~';
+      this.validateMsg = this.form.workTime ? '' : '您有没填写的项哦~';
+      this.validateMsg = this.form.education ? '' : '您有没填写的项哦~';
+      this.validateMsg = this.form.description ? '' : '您有没填写的项哦~';
+      this.validateMsg = this.form.require ? '' : '您有没填写的项哦~';
       if (this.validateMsg) {
         Toast({
           message: this.validateMsg,
@@ -71,7 +91,16 @@ export default {
     submitForm () {
       if (this.formValidate()) {
         // 表单验证通过
-        editPosition(this.form).then(res => {
+        let data = this.form;
+        if (this.$route.query.data) {
+          data.positionId = this.positionId;
+          data.edit = true;
+        } else {
+          data.positionId = uuid(8, 16);
+          data.edit = false;
+        }
+        data.companyId = this.companyId;
+        editPosition(data).then(res => {
           if (res.code === 0) {
             this.$router.push({ path: './hr-position' });
             this.resetForm();
@@ -81,6 +110,7 @@ export default {
     },
     resetForm () {
       this.form = {
+        name: '',
         salary: '',
         workTime: '',
         education: '',

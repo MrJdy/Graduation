@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-09 22:11:15
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 09:44:16
+ * @Last Modified time: 2019-04-14 20:50:16
  */
 <template>
   <div class="company-container">
@@ -14,6 +14,7 @@
 <script>
 import Navigation from '../../../components/navigationComponent';
 import { isLogin } from '../../../common/lib/helper.js';
+import { queryAllCompany } from '../../../common/api/api';
 
 export default {
   components: {
@@ -22,6 +23,10 @@ export default {
   created () {
     if (!isLogin()) {
       this.$router.push({ path: '/' });
+    } else {
+      queryAllCompany().then((res) => {
+        console.log(res);
+      });
     }
   }
 };

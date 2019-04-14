@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-12 16:49:55
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 10:29:08
+ * @Last Modified time: 2019-04-14 21:47:00
  */
 
 <template>
@@ -11,7 +11,7 @@
       <div class="top-bar">
         <label for="camera" class="iconfont pull-left icon-1">&#xe69a;</label>
         <input capture="camera" type="file" accept="image/*" id="camera" style="display: none">
-        <span class="iconfont pull-right icon-2">&#xe60d;</span>
+        <span class="iconfont pull-right icon-2" @click="toSetting">&#xe60d;</span>
       </div>
       <div class="user-name pull-left clearFix">{{userData.user_name}}</div>
       <!-- <pre class="mine-home">编辑我的信息 <span class="iconfont">&#xe60e;</span></pre> -->
@@ -38,9 +38,11 @@
     <div class="menu-container">
       <div class="menu-wrap" v-if="isPersonal">
         <div class="menu-item border-bottom">
-          <span class="iconfont pull-left icon-1">&#xe606;</span>
-          <span class="item-name pull-left">我的简历</span>
-          <span class="iconfont arrow pull-right">&#xe60e;</span>
+          <router-link class="router-link" to="/resume">
+            <span class="iconfont pull-left icon-1">&#xe606;</span>
+            <span class="item-name pull-left">我的简历</span>
+            <span class="iconfont arrow pull-right">&#xe60e;</span>
+          </router-link>
         </div>
         <!-- <div class="menu-item border-bottom">
           <span class="iconfont pull-left icon-2">&#xe646;</span>
@@ -76,12 +78,10 @@
             <span class="iconfont arrow pull-right">&#xe60e;</span>
           </router-link>
         </div>
-        <div class="menu-item border-bottom">
-          <router-link class="router-link" to="/edit-company">
-            <span class="iconfont pull-left icon-2">&#xe662;</span>
-            <span class="item-name pull-left">公司信息</span>
-            <span class="iconfont arrow pull-right">&#xe60e;</span>
-          </router-link>
+        <div class="menu-item border-bottom" @click="editCompany">
+          <span class="iconfont pull-left icon-2">&#xe662;</span>
+          <span class="item-name pull-left">公司信息</span>
+          <span class="iconfont arrow pull-right">&#xe60e;</span>
         </div>
         <div class="menu-item border-bottom">
           <router-link class="router-link" to="/hr-position">
@@ -106,7 +106,8 @@
 </template>
 
 <script>
-import { deleteCookie } from '../common/lib/helper.js';
+import { deleteCookie, getCookie } from '../common/lib/helper.js';
+import { queryCompany } from '../common/api/api';
 import { MessageBox } from 'mint-ui';
 
 export default {
@@ -120,6 +121,19 @@ export default {
     }
   },
   methods: {
+    toSetting () {
+      let data = JSON.stringify(this.userData);
+      this.$router.push({ path: '/setting', query: { data } });
+    },
+    editCompany () {
+      let phone = getCookie('token');
+      queryCompany({ phone }).then((res) => {
+        if (res.code === 0) {
+          let data = JSON.stringify(res.data);
+          this.$router.push({ path: '/edit-company', query: { data } });
+        }
+      });
+    },
     // 切换身份
     checkoutId (id) {
       MessageBox.confirm('', {
@@ -132,9 +146,19 @@ export default {
         .then(action => {
           if (action === 'confirm') {
             if (id === 'hr') {
-              this.$router.push({
-                path: '/edit-company',
-                query: { identity: 'hr' }
+              let phone = getCookie('token');
+              queryCompany({ phone }).then((res) => {
+                if (res.code === 0) {
+                  this.$router.push({
+                    path: '/hr-mine',
+                    query: { identity: 'hr' }
+                  });
+                } else {
+                  this.$router.push({
+                    path: '/edit-company',
+                    query: { identity: 'hr' }
+                  });
+                }
               });
             } else {
               this.$router.push({ path: '/mine' });

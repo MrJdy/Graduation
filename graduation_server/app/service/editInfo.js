@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:40:06
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 10:43:36
+ * @Last Modified time: 2019-04-14 22:28:04
  */
 
 'use strict';
@@ -11,19 +11,37 @@ const Service = require('egg').Service;
 class EditInfo extends Service {
   async editPosition(data) {
     console.log('职位信息----', data);
-    // if (data.id) {
-    //   // 更新数据库
-    // } else {
-    //   console.log(data);
-    // }
-    // const queryResult = await this.app.mysql.insert('userInfo', {
-    //   phone_num: data.phone,
-    // });
-    return true;
+    const params = {
+      position_id: data.positionId,
+      company_id: data.companyId,
+      position_name: data.name,
+      position_time: data.workTime,
+      position_education: data.education,
+      position_details: data.description,
+      position_require: data.require,
+      position_salary: data.salary,
+    };
+    if (data.edit) {
+      delete params.position_id;
+      const options = {
+        where: {
+          position_id: data.positionId,
+        },
+      };
+      const updateResult = await this.app.mysql.update(
+        'positionInfo',
+        params,
+        options
+      );
+      const status = updateResult.affectedRows === 1;
+      return status;
+    }
+    const insertResult = await this.app.mysql.insert('positionInfo', params);
+    const status = insertResult.affectedRows === 1;
+    return status;
   }
 
   async editCompany(data) {
-    console.log('公司信息----', data);
     const params = {
       company_id: data.companyId,
       phone_num: data.phone,
@@ -35,7 +53,74 @@ class EditInfo extends Service {
       company_financing: data.companyFinancing,
       company_introduction: data.introduction,
     };
+    console.log('公司信息----', params);
+    if (data.edit) {
+      delete params.company_id;
+      const options = {
+        where: {
+          company_id: data.companyId,
+        },
+      };
+      const updateResult = await this.app.mysql.update(
+        'companyInfo',
+        params,
+        options
+      );
+      const status = updateResult.affectedRows === 1;
+      return status;
+    }
     const insertResult = await this.app.mysql.insert('companyInfo', params);
+    const status = insertResult.affectedRows === 1;
+    return status;
+  }
+
+  async editUserInfo(data) {
+    const params = {
+      user_name: data.name,
+      user_sex: data.sex,
+      user_email: data.email,
+    };
+    const options = {
+      where: {
+        phone_num: data.phone,
+      },
+    };
+    const updateResult = await this.app.mysql.update(
+      'userInfo',
+      params,
+      options
+    );
+    const status = updateResult.affectedRows === 1;
+    return status;
+  }
+
+  async editResume(data) {
+    const params = {
+      phone_num: data.phone,
+      work_status: data.status,
+      expectation_salary: data.salary,
+      expectation_city: data.city,
+      work_experience: data.workExp,
+      project_experience: data.projectExp,
+      education_experience: data.educationExp,
+      self_introduction: data.introduce,
+    };
+    if (data.edit) {
+      delete params.phone_num;
+      const options = {
+        where: {
+          phone_num: data.phone,
+        },
+      };
+      const updateResult = await this.app.mysql.update(
+        'userResume',
+        params,
+        options
+      );
+      const status = updateResult.affectedRows === 1;
+      return status;
+    }
+    const insertResult = await this.app.mysql.insert('userResume', params);
     const status = insertResult.affectedRows === 1;
     return status;
   }

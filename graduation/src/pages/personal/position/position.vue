@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-08 15:19:14
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 09:44:45
+ * @Last Modified time: 2019-04-14 21:20:53
  */
 <template>
   <div class="position-container">
@@ -10,24 +10,44 @@
       <div class="head-title pull-left">web前端</div>
       <div class="iconfont pull-right">&#xe601;</div>
     </div>
-    <position-card :isPersonal="true" v-for="(item, index) in 10" :key="index"></position-card>
+    <position-card
+      :isPersonal="true"
+      v-for="item in positionData"
+      :key="item.position_id"
+      :positionData="item"
+    ></position-card>
     <navigation :selectActive="0"></navigation>
   </div>
 </template>
 
 <script>
+import { Indicator } from 'mint-ui';
 import PositionCard from '../../../components/positionCardComponent';
 import Navigation from '../../../components/navigationComponent';
 import { isLogin } from '../../../common/lib/helper.js';
+import { queryAllPosition } from '../../../common/api/api';
 
 export default {
   components: {
     PositionCard,
     Navigation
   },
+  data () {
+    return {
+      positionData: []
+    };
+  },
   created () {
     if (!isLogin()) {
       this.$router.push({ path: '/' });
+    } else {
+      Indicator.open({
+        spinnerType: 'triple-bounce'
+      });
+      queryAllPosition().then((res) => {
+        this.positionData = res.data;
+        Indicator.close();
+      });
     }
   }
 };
