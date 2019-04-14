@@ -1,7 +1,15 @@
+/*
+ * @Author: 姜定一
+ * @Date: 2019-04-13 09:37:36
+ * @Last Modified by: 姜定一
+ * @Last Modified time: 2019-04-14 09:44:07
+ */
 <template>
   <div class="edit-position">
     <div class="head-container">
-      <router-link to='/hr-mine' class="iconfont pull-left"><span @click="resetForm">&#xe677;</span></router-link>
+      <router-link to="/hr-mine" class="iconfont pull-left">
+        <span @click="resetForm">&#xe677;</span>
+      </router-link>
       <div class="save pull-right" @click="submitForm">保存</div>
     </div>
     <mt-field label="公司名称" placeholder="请输入公司名称" v-model="form.companyName"></mt-field>
@@ -10,7 +18,13 @@
     <mt-field label="公司类型" placeholder="请输入公司类型" v-model="form.companyType"></mt-field>
     <mt-field label="融资情况" placeholder="请输入融资情况" v-model="form.companyFinancing"></mt-field>
     <mt-field label="公司邮箱" placeholder="请输入公司邮箱" type="email" v-model="form.email"></mt-field>
-    <mt-field label="公司介绍" placeholder="请输入公司介绍" type="textarea" rows="4" v-model="form.introduction"></mt-field>
+    <mt-field
+      label="公司介绍"
+      placeholder="请输入公司介绍"
+      type="textarea"
+      rows="4"
+      v-model="form.introduction"
+    ></mt-field>
   </div>
 </template>
 
@@ -35,7 +49,7 @@ export default {
         introduction: ''
       },
       validateMsg: ''
-    }
+    };
   },
   methods: {
     formValidate () {
@@ -59,14 +73,13 @@ export default {
     submitForm () {
       if (this.formValidate()) {
         // 表单验证通过
-        editCompany(this.form).then((res) => {
+        editCompany(this.form).then(res => {
           if (res.code === 0) {
-            this.$router.push({ path: './hr-mine' })
+            this.$router.push({ path: './hr-mine' });
             this.resetForm();
           }
-        })
+        });
       }
-      return;
     },
     resetForm () {
       this.form = {
@@ -74,14 +87,13 @@ export default {
         workTime: '',
         education: '',
         description: '',
-        require: '',
+        require: ''
       };
       this.validateMsg = '';
     }
   }
-}
+};
 </script>
-
 
 <style lang="scss" scoped>
 .edit-position {

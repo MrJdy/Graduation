@@ -1,3 +1,9 @@
+/*
+ * @Author: 姜定一 
+ * @Date: 2019-04-13 09:39:09 
+ * @Last Modified by:   姜定一 
+ * @Last Modified time: 2019-04-14 09:39:09 
+ */
 <template>
   <div class="position-item-wrap" @click="toEdit(isPersonal)">
       <div class="clearFix">

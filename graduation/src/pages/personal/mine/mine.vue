@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-09 23:18:50
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-12 16:57:39
+ * @Last Modified time: 2019-04-14 09:44:39
  */
 <template>
   <div class="mine-container">
@@ -33,7 +33,7 @@ export default {
       this.$router.push({ path: '/' });
     } else {
       Indicator.open({
-          spinnerType: 'triple-bounce'
+        spinnerType: 'triple-bounce'
       });
       userInfo({ phone: getCookie('token') }).then(res => {
         this.userData = res.data;

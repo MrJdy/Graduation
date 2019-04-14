@@ -1,13 +1,27 @@
+/*
+ * @Author: 姜定一
+ * @Date: 2019-04-13 09:38:17
+ * @Last Modified by: 姜定一
+ * @Last Modified time: 2019-04-14 09:43:39
+ */
 <template>
   <div class="edit-position">
     <div class="head-container">
-      <router-link to='/hr-position' class="iconfont pull-left"><span @click="resetForm">&#xe677;</span></router-link>
+      <router-link to="/hr-position" class="iconfont pull-left">
+        <span @click="resetForm">&#xe677;</span>
+      </router-link>
       <div class="save pull-right" @click="submitForm">保存</div>
     </div>
     <mt-field label="工资范围" placeholder="请输入工资范围" v-model="form.salary"></mt-field>
     <mt-field label="工作经验" placeholder="请输入工作经验" v-model="form.workTime"></mt-field>
     <mt-field label="学历要求" placeholder="请输入学历要求" v-model="form.education"></mt-field>
-    <mt-field label="职位描述" placeholder="请输入职位描述" type="textarea" rows="4" v-model="form.description"></mt-field>
+    <mt-field
+      label="职位描述"
+      placeholder="请输入职位描述"
+      type="textarea"
+      rows="4"
+      v-model="form.description"
+    ></mt-field>
     <mt-field label="技能要求" placeholder="请输入技能要求" type="textarea" rows="4" v-model="form.require"></mt-field>
   </div>
 </template>
@@ -28,10 +42,10 @@ export default {
         workTime: '',
         education: '',
         description: '',
-        require: '',
+        require: ''
       },
       validateMsg: ''
-    }
+    };
   },
   created () {
     // 编辑时初始化数据
@@ -57,14 +71,13 @@ export default {
     submitForm () {
       if (this.formValidate()) {
         // 表单验证通过
-        editPosition(this.form).then((res) => {
+        editPosition(this.form).then(res => {
           if (res.code === 0) {
-            this.$router.push({ path: './hr-position' })
+            this.$router.push({ path: './hr-position' });
             this.resetForm();
           }
         });
       }
-      return;
     },
     resetForm () {
       this.form = {
@@ -72,14 +85,13 @@ export default {
         workTime: '',
         education: '',
         description: '',
-        require: '',
+        require: ''
       };
       this.validateMsg = '';
     }
   }
-}
+};
 </script>
-
 
 <style lang="scss" scoped>
 .edit-position {

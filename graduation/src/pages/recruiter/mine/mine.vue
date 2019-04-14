@@ -1,3 +1,9 @@
+/*
+ * @Author: 姜定一
+ * @Date: 2019-04-13 09:38:05
+ * @Last Modified by: 姜定一
+ * @Last Modified time: 2019-04-14 09:43:57
+ */
 <template>
   <div class="mine-container">
     <mine :userData="userData" :isPersonal="false"></mine>
@@ -24,7 +30,7 @@ export default {
       this.$router.push({ path: '/' });
     } else {
       Indicator.open({
-          spinnerType: 'triple-bounce'
+        spinnerType: 'triple-bounce'
       });
       userInfo({ phone: getCookie('token') }).then(res => {
         this.userData = res.data;

@@ -1,9 +1,15 @@
+/*
+ * @Author: 姜定一
+ * @Date: 2019-04-13 09:38:25
+ * @Last Modified by: 姜定一
+ * @Last Modified time: 2019-04-14 09:43:25
+ */
 <template>
   <div class="position-container">
     <div class="head-container">
-      <router-link to='/hr-mine' class="iconfont pull-left">&#xe677;</router-link>
+      <router-link to="/hr-mine" class="iconfont pull-left">&#xe677;</router-link>
       <div class="head-title">职位信息</div>
-      <router-link to='/edit-position' class="iconfont pull-right">&#xe62f;</router-link>
+      <router-link to="/edit-position" class="iconfont pull-right">&#xe62f;</router-link>
     </div>
     <position-card :isPersonal="false" v-for="(item, index) in 10" :key="index"></position-card>
   </div>
@@ -15,7 +21,7 @@ import { isLogin } from '../../../common/lib/helper.js';
 
 export default {
   components: {
-    PositionCard,
+    PositionCard
   },
   created () {
     if (!isLogin()) {
@@ -25,7 +31,7 @@ export default {
   methods: {
     toEdit () {
       console.log(11111);
-      this.$router.push({ path: '/edit-position' })
+      this.$router.push({ path: '/edit-position' });
     }
   }
 };
