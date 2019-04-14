@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:39:32
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 09:46:22
+ * @Last Modified time: 2019-04-14 10:44:33
  */
 
 'use strict';
@@ -21,10 +21,17 @@ class EditInfoController extends Controller {
   async editCompany() {
     const ctx = this.ctx;
     const result = await ctx.service.editInfo.editCompany(ctx.request.body);
-    ctx.body = {
-      status: result,
-      code: 0,
-    };
+    if (result) {
+      ctx.body = {
+        status: result,
+        code: 0,
+      };
+    } else {
+      ctx.body = {
+        status: result,
+        code: 500,
+      };
+    }
   }
 }
 module.exports = EditInfoController;

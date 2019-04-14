@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-12 16:49:55
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-12 21:32:22
+ * @Last Modified time: 2019-04-14 10:29:08
  */
 
 <template>
@@ -70,21 +70,21 @@
       </div>
       <div class="menu-wrap" v-if="!isPersonal">
         <div class="menu-item border-bottom">
-          <router-link class="router-link" to='/hr-message' >
+          <router-link class="router-link" to="/hr-message">
             <span class="iconfont pull-left icon-2">&#xe67c;</span>
             <span class="item-name pull-left">我的消息</span>
             <span class="iconfont arrow pull-right">&#xe60e;</span>
           </router-link>
         </div>
         <div class="menu-item border-bottom">
-          <router-link class="router-link" to='/edit-company' >
+          <router-link class="router-link" to="/edit-company">
             <span class="iconfont pull-left icon-2">&#xe662;</span>
             <span class="item-name pull-left">公司信息</span>
             <span class="iconfont arrow pull-right">&#xe60e;</span>
           </router-link>
         </div>
         <div class="menu-item border-bottom">
-          <router-link class="router-link" to='/hr-position' >
+          <router-link class="router-link" to="/hr-position">
             <span class="iconfont pull-left icon-1">&#xe622;</span>
             <span class="item-name pull-left">发布职位</span>
             <span class="iconfont arrow pull-right">&#xe60e;</span>
@@ -124,16 +124,26 @@ export default {
     checkoutId (id) {
       MessageBox.confirm('', {
         title: '提示',
-        message: id === 'hr' ? '确定要切换到企业用户吗?' : '确定要切换到个人用户吗?',
+        message:
+          id === 'hr' ? '确定要切换到企业用户吗?' : '确定要切换到个人用户吗?',
         confirmButtonClass: 'confirm-ok',
         cancelButtonClass: 'confirm-cancel'
-      }).then(action => {
-        if (action === 'confirm') {
-          this.$router.push({ path: id === 'hr' ? '/hr-mine' : 'mine'});
-        }
-      }).catch(action => {
-        return 0;
-      });
+      })
+        .then(action => {
+          if (action === 'confirm') {
+            if (id === 'hr') {
+              this.$router.push({
+                path: '/edit-company',
+                query: { identity: 'hr' }
+              });
+            } else {
+              this.$router.push({ path: '/mine' });
+            }
+          }
+        })
+        .catch(action => {
+          return 0;
+        });
     },
     // 退出登录
     loginOut () {
@@ -142,14 +152,16 @@ export default {
         message: '确定要退出登录吗?',
         confirmButtonClass: 'confirm-ok',
         cancelButtonClass: 'confirm-cancel'
-      }).then(action => {
-        if (action === 'confirm') {
-          deleteCookie('token');
-          this.$router.push({ path: '/' });
-        }
-      }).catch(action => {
-        return 0;
-      });
+      })
+        .then(action => {
+          if (action === 'confirm') {
+            deleteCookie('token');
+            this.$router.push({ path: '/' });
+          }
+        })
+        .catch(action => {
+          return 0;
+        });
     }
   }
 };
@@ -219,7 +231,7 @@ export default {
     height: 1.2rem;
     background: #ffffff;
     padding: 0 0.55rem;
-    margin-bottom: .16rem;
+    margin-bottom: 0.16rem;
     display: flex;
     justify-content: space-between;
     .nav-item {

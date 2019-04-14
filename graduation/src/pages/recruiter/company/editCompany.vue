@@ -2,12 +2,15 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:37:36
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 09:44:07
+ * @Last Modified time: 2019-04-14 10:31:09
  */
 <template>
   <div class="edit-position">
     <div class="head-container">
-      <router-link to="/hr-mine" class="iconfont pull-left">
+      <router-link
+        :to="this.$route.query.identity === 'hr' ? '/mine' : '/hr-mine'"
+        class="iconfont pull-left"
+      >
         <span @click="resetForm">&#xe677;</span>
       </router-link>
       <div class="save pull-right" @click="submitForm">保存</div>
@@ -33,6 +36,7 @@ import { Field, Toast } from 'mint-ui';
 import Vue from 'vue';
 
 import { editCompany } from '../../../common/api/api';
+import { getCookie, uuid } from '../../../common/lib/helper';
 
 Vue.component(Field.name, Field);
 
@@ -73,7 +77,10 @@ export default {
     submitForm () {
       if (this.formValidate()) {
         // 表单验证通过
-        editCompany(this.form).then(res => {
+        let data = this.form;
+        data.companyId = uuid(8, 16);
+        data.phone = getCookie('token');
+        editCompany(data).then(res => {
           if (res.code === 0) {
             this.$router.push({ path: './hr-mine' });
             this.resetForm();
