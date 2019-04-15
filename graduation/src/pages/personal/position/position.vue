@@ -2,13 +2,23 @@
  * @Author: 姜定一
  * @Date: 2019-04-08 15:19:14
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 21:20:53
+ * @Last Modified time: 2019-04-15 22:22:29
  */
 <template>
   <div class="position-container">
+    <mt-search v-model="searchValue" :autofocus="true" v-show="isSearch">
+      <!-- 点击，将当前数据传到职位详情页 -->
+      <mt-cell
+        v-for="item in positionData"
+        :title="item.company_name"
+        :value="item.position_name"
+        :key="item.position_id"
+        v-show="item.position_name.indexOf(searchValue) > -1 || item.company_name.indexOf(searchValue) > -1"
+      ></mt-cell>
+    </mt-search>
     <div class="head-container">
-      <div class="head-title pull-left">web前端</div>
-      <div class="iconfont pull-right">&#xe601;</div>
+      <div class="head-title pull-left">职位信息</div>
+      <div class="iconfont pull-right" @click="searchData">&#xe601;</div>
     </div>
     <position-card
       :isPersonal="true"
@@ -21,11 +31,15 @@
 </template>
 
 <script>
-import { Indicator } from 'mint-ui';
+import { Indicator, Search, Cell } from 'mint-ui';
+import Vue from 'vue';
 import PositionCard from '../../../components/positionCardComponent';
 import Navigation from '../../../components/navigationComponent';
 import { isLogin } from '../../../common/lib/helper.js';
 import { queryAllPosition } from '../../../common/api/api';
+
+Vue.component(Search.name, Search);
+Vue.component(Cell.name, Cell);
 
 export default {
   components: {
@@ -34,8 +48,18 @@ export default {
   },
   data () {
     return {
-      positionData: []
+      isSearch: false,
+      positionData: [],
+      searchValue: ''
     };
+  },
+
+  watch: {
+    searchValue: function (newvs, oldvs) {
+      if (!newvs) {
+        this.isSearch = false;
+      }
+    }
   },
   created () {
     if (!isLogin()) {
@@ -49,6 +73,11 @@ export default {
         Indicator.close();
       });
     }
+  },
+  methods: {
+    searchData () {
+      this.isSearch = true;
+    }
   }
 };
 </script>
@@ -58,6 +87,14 @@ export default {
   width: 7.5rem;
   padding: 1rem 0 1.31rem 0;
   font-family: "微软雅黑";
+  .mint-search {
+    z-index: 999;
+    width: 7.5rem;
+    font-size: 0.26rem;
+    background: rgba(255, 255, 255, 0.8);
+    position: fixed;
+    top: 0;
+  }
   .head-container {
     width: 7.5rem;
     height: 1rem;
