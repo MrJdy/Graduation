@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-06 11:32:18
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-08 15:36:36
+ * @Last Modified time: 2019-04-15 14:04:19
  */
 /* eslint valid-jsdoc: "off" */
 
@@ -11,6 +11,7 @@
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
+const path = require('path');
 module.exports = appInfo => {
   /**
    * built-in config
@@ -73,6 +74,11 @@ module.exports = appInfo => {
     app: true,
     // 是否加载到 agent 上，默认关闭
     agent: false,
+  };
+
+  config.static = {
+    prefix: '/',
+    dir: path.join(__dirname, '../app/public/dist'),
   };
 
   // add your user config here
