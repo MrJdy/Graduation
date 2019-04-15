@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:40:06
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 22:35:36
+ * @Last Modified time: 2019-04-15 23:18:30
  */
 
 'use strict';
@@ -17,8 +17,14 @@ class queryInfo extends Service {
   }
 
   async queryAllCompany() {
-    const queryResult = await this.app.mysql.select('companyInfo');
-    return queryResult;
+    const queryCompany = await this.app.mysql.select('companyInfo');
+    for (let i = 0; i < queryCompany.length; i++) {
+      const queryUser = await this.app.mysql.get('userInfo', {
+        phone_num: queryCompany[i].phone_num,
+      });
+      queryCompany[i].user_avatar = queryUser.user_avatar;
+    }
+    return queryCompany;
   }
 
   async queryPosition(data) {
