@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-08 15:19:14
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-15 22:22:29
+ * @Last Modified time: 2019-04-17 00:54:09
  */
 <template>
   <div class="position-container">
@@ -14,6 +14,7 @@
         :value="item.position_name"
         :key="item.position_id"
         v-show="item.position_name.indexOf(searchValue) > -1 || item.company_name.indexOf(searchValue) > -1"
+        :to="{path:'/position-detail', query:{data: JSON.stringify(item)}}"
       ></mt-cell>
     </mt-search>
     <div class="head-container">
@@ -35,7 +36,7 @@ import { Indicator, Search, Cell } from 'mint-ui';
 import Vue from 'vue';
 import PositionCard from '../../../components/positionCardComponent';
 import Navigation from '../../../components/navigationComponent';
-import { isLogin } from '../../../common/lib/helper.js';
+import { isLogin, getCookie } from '../../../common/lib/helper.js';
 import { queryAllPosition } from '../../../common/api/api';
 
 Vue.component(Search.name, Search);
@@ -68,7 +69,10 @@ export default {
       Indicator.open({
         spinnerType: 'triple-bounce'
       });
-      queryAllPosition().then((res) => {
+      let data = {
+        phone: getCookie('token')
+      };
+      queryAllPosition(data).then((res) => {
         this.positionData = res.data;
         Indicator.close();
       });
@@ -77,6 +81,10 @@ export default {
   methods: {
     searchData () {
       this.isSearch = true;
+    },
+    goDetail (query) {
+      let data = JSON.stringify(query);
+      this.$router.push({ path: '/position-detail', query: { data } });
     }
   }
 };

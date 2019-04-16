@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:39:32
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 22:02:42
+ * @Last Modified time: 2019-04-17 00:23:07
  */
 
 'use strict';
@@ -52,7 +52,20 @@ class QueryInfoController extends Controller {
 
   async queryAllPosition() {
     const ctx = this.ctx;
-    const result = await ctx.service.queryInfo.queryAllPosition();
+    const result = await ctx.service.queryInfo.queryAllPosition(
+      ctx.request.body
+    );
+    ctx.body = {
+      data: result,
+      code: 0,
+    };
+  }
+
+  async queryLikePosition() {
+    const ctx = this.ctx;
+    const result = await ctx.service.queryInfo.queryLikePosition(
+      ctx.request.body
+    );
     ctx.body = {
       data: result,
       code: 0,

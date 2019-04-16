@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-04 16:11:36
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 22:14:58
+ * @Last Modified time: 2019-04-17 00:22:19
  */
 import CONSTANT from '../constant/constant';
 import { buildPostPromise } from '../lib/fetch';
@@ -51,4 +51,12 @@ export function editResume (data) {
 
 export function queryResume (data) {
   return buildPostPromise(API.queryResume, data);
+}
+
+export function collectionPosition (data) {
+  return buildPostPromise(API.collectionPosition, data);
+}
+
+export function queryLikePosition (data) {
+  return buildPostPromise(API.queryLikePosition, data);
 }

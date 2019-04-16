@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:39:09
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 21:23:40
+ * @Last Modified time: 2019-04-16 22:12:15
  */
 <template>
   <div class="position-item-wrap" @click="toEdit(isPersonal)">
@@ -40,6 +40,8 @@ export default {
     toEdit (isPersonal) {
       if (isPersonal) {
         // 进入详情页
+        let data = JSON.stringify(this.positionData);
+        this.$router.push({ path: '/position-detail', query: { data } });
       } else {
         let data = JSON.stringify(this.positionData);
         this.$router.push({ path: '/edit-position', query: { data } });

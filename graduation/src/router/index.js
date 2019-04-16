@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-06 11:17:09
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 21:45:16
+ * @Last Modified time: 2019-04-17 00:19:11
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -18,6 +18,8 @@ import EditPosition from '../pages/recruiter/position/editPosition';
 import EditCompany from '../pages/recruiter/company/editCompany';
 import Setting from '../pages/setting/setting';
 import Resume from '../pages/personal/resume/resume';
+import PositionDetail from '../pages/personal/position/positionDetail';
+import LikePosition from '../pages/personal/position/likePosition';
 
 Vue.use(Router);
 
@@ -32,6 +34,16 @@ export default new Router({
       path: '/position',
       name: 'Position',
       component: Position
+    },
+    {
+      path: '/like-position',
+      name: 'LikePosition',
+      component: LikePosition
+    },
+    {
+      path: '/position-detail',
+      name: 'PositionDetail',
+      component: PositionDetail
     },
     {
       path: '/company',

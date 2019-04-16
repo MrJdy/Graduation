@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-06 11:31:59
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 22:15:21
+ * @Last Modified time: 2019-04-17 00:22:40
  */
 'use strict';
 
@@ -25,4 +25,12 @@ module.exports = app => {
   router.post('/api/edit/user-info', controller.editInfo.editUserInfo);
   router.post('/api/edit-resume', controller.editInfo.editResume);
   router.post('/api/query-resume', controller.queryInfo.queryResume);
+  router.post(
+    '/api/Collection-position',
+    controller.editCollection.editCollectionPosition
+  );
+  router.post(
+    '/api/query-like-position',
+    controller.queryInfo.queryLikePosition
+  );
 };
