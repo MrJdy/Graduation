@@ -23,7 +23,7 @@
     </div>
     <div class="position-detail">
       <p class="title">职位详情</p>
-      <pre class="content">{{this.positionData.position_details}}</pre>
+      <p class="content">{{this.positionData.position_details}}</p>
     </div>
     <div class="footer">立即沟通</div>
   </div>

@@ -23,7 +23,7 @@
     </div>
     <div class="company-detail">
       <p class="title">公司介绍</p>
-      <pre class="content">{{companyData.company_introduction}}</pre>
+      <p class="content">{{companyData.company_introduction}}</p>
     </div>
     <div class="footer">立即沟通</div>
   </div>

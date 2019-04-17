@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-12 16:49:55
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 11:05:51
+ * @Last Modified time: 2019-04-17 11:50:40
  */
 
 <template>
@@ -14,7 +14,6 @@
         <span class="iconfont pull-right icon-2" @click="toSetting">&#xe60d;</span>
       </div>
       <div class="user-name pull-left clearFix">{{userData.user_name}}</div>
-      <!-- <pre class="mine-home">编辑我的信息 <span class="iconfont">&#xe60e;</span></pre> -->
       <img class="mine-avatar" :src="userData.user_avatar">
     </div>
     <div class="mine-nav-wrap" v-if="isPersonal">
