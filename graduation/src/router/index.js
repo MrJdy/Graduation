@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-06 11:17:09
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 00:19:11
+ * @Last Modified time: 2019-04-17 11:04:33
  */
 import Vue from 'vue';
 import Router from 'vue-router';
@@ -20,6 +20,8 @@ import Setting from '../pages/setting/setting';
 import Resume from '../pages/personal/resume/resume';
 import PositionDetail from '../pages/personal/position/positionDetail';
 import LikePosition from '../pages/personal/position/likePosition';
+import CompanyDetail from '../pages/personal/company/companyDetail';
+import LikeCompany from '../pages/personal/company/likeCompany';
 
 Vue.use(Router);
 
@@ -49,6 +51,16 @@ export default new Router({
       path: '/company',
       name: 'Company',
       component: Company
+    },
+    {
+      path: '/company-detail',
+      name: 'CompanyDetail',
+      component: CompanyDetail
+    },
+    {
+      path: '/like-company',
+      name: 'LikeCompany',
+      component: LikeCompany
     },
     {
       path: '/message',

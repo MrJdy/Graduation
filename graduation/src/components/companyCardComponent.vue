@@ -1,5 +1,5 @@
 <template>
-  <div class="company-card">
+  <div class="company-card" @click="toDetail">
     <img :src="companyData.user_avatar" alt class="company-icon pull-left">
     <div class="company-title pull-left">{{companyData.company_name}}</div>
     <br>
@@ -18,6 +18,12 @@ export default {
   props: {
     companyData: {
       type: Object
+    }
+  },
+  methods: {
+    toDetail () {
+      let data = JSON.stringify(this.companyData);
+      this.$router.push({path: '/company-detail', query: {data}});
     }
   }
 };

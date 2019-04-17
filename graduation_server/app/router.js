@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-06 11:31:59
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 00:22:40
+ * @Last Modified time: 2019-04-17 11:09:45
  */
 'use strict';
 
@@ -33,4 +33,6 @@ module.exports = app => {
     '/api/query-like-position',
     controller.queryInfo.queryLikePosition
   );
+  router.post('/api/collection-company', controller.editCollection.editCollectionCompany);
+  router.post('/api/query-like-company', controller.queryInfo.queryLikeCompany);
 };

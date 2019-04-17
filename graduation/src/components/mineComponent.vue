@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-12 16:49:55
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 00:20:11
+ * @Last Modified time: 2019-04-17 11:05:51
  */
 
 <template>
@@ -50,9 +50,11 @@
           <span class="iconfont arrow pull-right">&#xe60e;</span>
         </div>-->
         <div class="menu-item border-bottom">
-          <span class="iconfont pull-left icon-2">&#xe662;</span>
-          <span class="item-name pull-left">关注公司</span>
-          <span class="iconfont arrow pull-right">&#xe60e;</span>
+          <router-link class="router-link" to="/like-company">
+            <span class="iconfont pull-left icon-2">&#xe662;</span>
+            <span class="item-name pull-left">关注公司</span>
+            <span class="iconfont arrow pull-right">&#xe60e;</span>
+          </router-link>
         </div>
         <div class="menu-item border-bottom">
           <router-link class="router-link" to="/like-position">

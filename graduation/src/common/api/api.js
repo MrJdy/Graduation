@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-04 16:11:36
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 00:22:19
+ * @Last Modified time: 2019-04-17 11:06:46
  */
 import CONSTANT from '../constant/constant';
 import { buildPostPromise } from '../lib/fetch';
@@ -29,8 +29,8 @@ export function queryCompany (data) {
   return buildPostPromise(API.queryCompany, data);
 }
 
-export function queryAllCompany () {
-  return buildPostPromise(API.queryAllCompany);
+export function queryAllCompany (data) {
+  return buildPostPromise(API.queryAllCompany, data);
 }
 
 export function queryPosition (data) {
@@ -59,4 +59,12 @@ export function collectionPosition (data) {
 
 export function queryLikePosition (data) {
   return buildPostPromise(API.queryLikePosition, data);
+}
+
+export function collectionCompany (data) {
+  return buildPostPromise(API.collectionCompany, data);
+}
+
+export function queryLikeCompany (data) {
+  return buildPostPromise(API.queryLikeCompany, data);
 }

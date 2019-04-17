@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-09 22:11:15
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-16 00:24:42
+ * @Last Modified time: 2019-04-17 10:40:45
  */
 <template>
   <div class="company-container">
@@ -30,7 +30,7 @@ import { Indicator, Search, Cell } from 'mint-ui';
 import Vue from 'vue';
 import Navigation from '../../../components/navigationComponent';
 import CompanyCard from '../../../components/companyCardComponent';
-import { isLogin } from '../../../common/lib/helper.js';
+import { isLogin, getCookie } from '../../../common/lib/helper.js';
 import { queryAllCompany } from '../../../common/api/api';
 Vue.component(Search.name, Search);
 Vue.component(Cell.name, Cell);
@@ -61,7 +61,10 @@ export default {
       Indicator.open({
         spinnerType: 'triple-bounce'
       });
-      queryAllCompany().then((res) => {
+      let data = {
+        phone: getCookie('token')
+      };
+      queryAllCompany(data).then((res) => {
         this.companyData = res.data;
         Indicator.close();
       });

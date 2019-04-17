@@ -10,15 +10,15 @@
       >&#xe625;</span>
     </div>
     <div class="clearFix">
-      <p class="position-title pull-left">{{this.positionData.position_name}}</p>
-      <p class="position-salary pull-right">{{this.positionData.position_salary}}</p>
+      <p class="position-title pull-left">{{positionData.position_name}}</p>
+      <p class="position-salary pull-right">{{positionData.position_salary}}</p>
     </div>
     <div class="label-wrap clearFix border-bottom">
-      <span class="iconfont pull-left icon-1">&#xe602; {{this.positionData.company_local}}</span>
-      <span class="iconfont pull-left icon-2">&#xe61d; {{this.positionData.position_time}}</span>
+      <span class="iconfont pull-left icon-1">&#xe602; {{positionData.company_local}}</span>
+      <span class="iconfont pull-left icon-2">&#xe61d; {{positionData.position_time}}</span>
       <span class="iconfont pull-left icon-3">
         &#xe64b;
-        <span class="education">{{this.positionData.position_education}}</span>
+        <span class="education">{{positionData.position_education}}</span>
       </span>
     </div>
     <div class="position-detail">

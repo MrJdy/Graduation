@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:39:32
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 00:23:07
+ * @Last Modified time: 2019-04-17 11:09:44
  */
 
 'use strict';
@@ -27,7 +27,16 @@ class QueryInfoController extends Controller {
 
   async queryAllCompany() {
     const ctx = this.ctx;
-    const result = await ctx.service.queryInfo.queryAllCompany();
+    const result = await ctx.service.queryInfo.queryAllCompany(ctx.request.body);
+    ctx.body = {
+      data: result,
+      code: 0,
+    };
+  }
+
+  async queryLikeCompany() {
+    const ctx = this.ctx;
+    const result = await ctx.service.queryInfo.queryLikeCompany(ctx.request.body);
     ctx.body = {
       data: result,
       code: 0,

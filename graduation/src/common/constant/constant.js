@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-04 16:10:13
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 00:22:27
+ * @Last Modified time: 2019-04-17 10:59:35
  */
 export default {
   API: {
@@ -18,6 +18,8 @@ export default {
     editResume: '/api/edit-resume',
     queryResume: '/api/query-resume',
     collectionPosition: '/api/Collection-position',
-    queryLikePosition: '/api/query-like-position'
+    queryLikePosition: '/api/query-like-position',
+    collectionCompany: '/api/collection-company',
+    queryLikeCompany: '/api/query-like-company'
   }
 };
