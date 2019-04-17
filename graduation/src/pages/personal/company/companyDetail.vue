@@ -23,7 +23,7 @@
     </div>
     <div class="company-detail">
       <p class="title">公司介绍</p>
-      <p class="content">{{companyData.company_introduction}}</p>
+      <pre class="content">{{companyData.company_introduction}}</pre>
     </div>
     <div class="footer">立即沟通</div>
   </div>
@@ -44,7 +44,6 @@ export default {
   created () {
     this.companyData = JSON.parse(this.$route.query.data);
     this.isCollection = this.companyData.isCollection;
-    console.log(this.companyData);
   },
   methods: {
     returnPage () {
@@ -151,6 +150,7 @@ export default {
     .content {
       color: #666666;
       font-size: 0.26rem;
+      line-height: .5rem;
       margin-top: 0.4rem;
     }
   }

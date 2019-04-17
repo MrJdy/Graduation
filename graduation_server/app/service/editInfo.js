@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:40:06
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 22:28:04
+ * @Last Modified time: 2019-04-17 13:25:47
  */
 
 'use strict';
@@ -10,7 +10,6 @@ const Service = require('egg').Service;
 
 class EditInfo extends Service {
   async editPosition(data) {
-    console.log('职位信息----', data);
     const params = {
       position_id: data.positionId,
       company_id: data.companyId,
@@ -53,7 +52,6 @@ class EditInfo extends Service {
       company_financing: data.companyFinancing,
       company_introduction: data.introduction,
     };
-    console.log('公司信息----', params);
     if (data.edit) {
       delete params.company_id;
       const options = {

@@ -23,7 +23,7 @@
     </div>
     <div class="position-detail">
       <p class="title">职位详情</p>
-      <p class="content">{{this.positionData.position_details}}</p>
+      <pre class="content">{{this.positionData.position_details}}</pre>
     </div>
     <div class="footer">立即沟通</div>
   </div>
@@ -44,7 +44,6 @@ export default {
   created () {
     this.positionData = JSON.parse(this.$route.query.data);
     this.isCollection = this.positionData.isCollection;
-    console.log(this.positionData);
   },
   methods: {
     returnPage () {
@@ -152,6 +151,7 @@ export default {
     .content {
       color: #666666;
       font-size: 0.26rem;
+      line-height: .5rem;
       margin-top: 0.4rem;
     }
   }
