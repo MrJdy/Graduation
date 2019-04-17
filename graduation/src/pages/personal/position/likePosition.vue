@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-17 00:13:04
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 00:20:51
+ * @Last Modified time: 2019-04-17 19:19:06
  */
 
 <template>
@@ -12,6 +12,7 @@
         <span class="iconfont">&#xe677;</span>
       </router-link>
     </div>
+    <no-data :dataLength="Boolean(positionData.length)"></no-data>
     <position-card
       :isPersonal="true"
       v-for="item in positionData"
@@ -24,12 +25,14 @@
 <script>
 import { Indicator } from 'mint-ui';
 import PositionCard from '../../../components/positionCardComponent';
+import NoData from '../../../components/noDataComponent';
 import { isLogin, getCookie } from '../../../common/lib/helper.js';
 import { queryLikePosition } from '../../../common/api/api';
 
 export default {
   components: {
-    PositionCard
+    PositionCard,
+    NoData
   },
   data () {
     return {

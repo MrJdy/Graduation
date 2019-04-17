@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-17 10:57:39
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 11:02:01
+ * @Last Modified time: 2019-04-17 19:15:48
  */
 
 <template>
@@ -12,6 +12,7 @@
         <span class="iconfont">&#xe677;</span>
       </router-link>
     </div>
+    <no-data :dataLength="Boolean(companyData.length)"></no-data>
     <company-card v-for="item in companyData" :key="item.company_id" :companyData="item"></company-card>
   </div>
 </template>
@@ -19,12 +20,14 @@
 <script>
 import { Indicator } from 'mint-ui';
 import CompanyCard from '../../../components/companyCardComponent';
+import NoData from '../../../components/noDataComponent';
 import { isLogin, getCookie } from '../../../common/lib/helper.js';
 import { queryLikeCompany } from '../../../common/api/api';
 
 export default {
   components: {
-    CompanyCard
+    CompanyCard,
+    NoData
   },
   data () {
     return {

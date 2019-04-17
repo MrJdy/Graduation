@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:37:55
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 09:44:02
+ * @Last Modified time: 2019-04-17 19:20:52
  */
 <template>
   <div class="message-container">
@@ -10,14 +10,18 @@
       <router-link to="/hr-mine" class="iconfont pull-left">&#xe677;</router-link>
       <div class="head-title">我的消息</div>
     </div>
+    <no-data :dataLength="Boolean(0)"></no-data>
   </div>
 </template>
 
 <script>
 import { isLogin } from '../../../common/lib/helper.js';
+import NoData from '../../../components/noDataComponent';
 
 export default {
-  components: {},
+  components: {
+    NoData
+  },
   created () {
     if (!isLogin()) {
       this.$router.push({ path: '/' });

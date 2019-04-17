@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-08 15:19:14
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 00:54:09
+ * @Last Modified time: 2019-04-17 19:19:36
  */
 <template>
   <div class="position-container">
@@ -21,6 +21,7 @@
       <div class="head-title pull-left">职位信息</div>
       <div class="iconfont pull-right" @click="searchData">&#xe601;</div>
     </div>
+    <no-data :dataLength="Boolean(positionData.length)"></no-data>
     <position-card
       :isPersonal="true"
       v-for="item in positionData"
@@ -36,6 +37,7 @@ import { Indicator, Search, Cell } from 'mint-ui';
 import Vue from 'vue';
 import PositionCard from '../../../components/positionCardComponent';
 import Navigation from '../../../components/navigationComponent';
+import NoData from '../../../components/noDataComponent';
 import { isLogin, getCookie } from '../../../common/lib/helper.js';
 import { queryAllPosition } from '../../../common/api/api';
 
@@ -45,7 +47,8 @@ Vue.component(Cell.name, Cell);
 export default {
   components: {
     PositionCard,
-    Navigation
+    Navigation,
+    NoData
   },
   data () {
     return {

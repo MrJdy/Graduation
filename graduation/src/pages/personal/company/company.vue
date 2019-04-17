@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-09 22:11:15
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 10:40:45
+ * @Last Modified time: 2019-04-17 19:16:45
  */
 <template>
   <div class="company-container">
@@ -20,6 +20,7 @@
       <div class="head-title pull-left">公司信息</div>
       <div class="iconfont pull-right" @click="searchData">&#xe601;</div>
     </div>
+    <no-data :dataLength="Boolean(companyData.length)"></no-data>
     <company-card v-for="item in companyData" :key="item.company_id" :companyData="item"></company-card>
     <navigation :selectActive="1"></navigation>
   </div>
@@ -30,6 +31,7 @@ import { Indicator, Search, Cell } from 'mint-ui';
 import Vue from 'vue';
 import Navigation from '../../../components/navigationComponent';
 import CompanyCard from '../../../components/companyCardComponent';
+import NoData from '../../../components/noDataComponent';
 import { isLogin, getCookie } from '../../../common/lib/helper.js';
 import { queryAllCompany } from '../../../common/api/api';
 Vue.component(Search.name, Search);
@@ -38,7 +40,8 @@ Vue.component(Cell.name, Cell);
 export default {
   components: {
     CompanyCard,
-    Navigation
+    Navigation,
+    NoData
   },
   data () {
     return {

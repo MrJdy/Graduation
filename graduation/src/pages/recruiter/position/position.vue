@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:38:25
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-14 20:34:55
+ * @Last Modified time: 2019-04-17 19:21:37
  */
 <template>
   <div class="position-container">
@@ -11,6 +11,7 @@
       <div class="head-title">职位信息</div>
       <router-link to="/edit-position" class="iconfont pull-right">&#xe62f;</router-link>
     </div>
+    <no-data :dataLength="Boolean(positionData.length)"></no-data>
     <position-card
       :isPersonal="false"
       v-for="item in positionData"
@@ -22,13 +23,15 @@
 
 <script>
 import PositionCard from '../../../components/positionCardComponent';
+import NoData from '../../../components/noDataComponent';
 import { isLogin, getCookie } from '../../../common/lib/helper.js';
 import { queryPosition } from '../../../common/api/api';
 import { Indicator } from 'mint-ui';
 
 export default {
   components: {
-    PositionCard
+    PositionCard,
+    NoData
   },
   data () {
     return {

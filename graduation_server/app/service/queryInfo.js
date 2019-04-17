@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:40:06
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 11:29:29
+ * @Last Modified time: 2019-04-17 19:03:16
  */
 
 'use strict';
@@ -26,7 +26,7 @@ class queryInfo extends Service {
       const queryLike = await this.app.mysql.get('likeCompany', {
         phone_num: data.phone,
       });
-      if (queryLike) {
+      if (queryLike && queryLike.company_list.length > 0) {
         const companyList = JSON.parse(queryLike.company_list);
         if (companyList.indexOf(queryCompany[i].company_id) > -1) {
           queryCompany[i].isCollection = true;
@@ -109,7 +109,7 @@ class queryInfo extends Service {
       const queryLike = await this.app.mysql.get('likePosition', {
         phone_num: data.phone,
       });
-      if (queryLike) {
+      if (queryLike && queryLike.position_list.length > 0) {
         const positionList = JSON.parse(queryLike.position_list);
         if (positionList.indexOf(queryPosition[i].position_id) > -1) {
           queryPosition[i].isCollection = true;
@@ -117,7 +117,7 @@ class queryInfo extends Service {
           queryPosition[i].isCollection = false;
         }
       } else {
-        queryCompany[i].isCollection = false;
+        queryPosition[i].isCollection = false;
       }
       queryPosition[i].company_name = queryCompany.company_name;
       queryPosition[i].company_local = queryCompany.company_local;
