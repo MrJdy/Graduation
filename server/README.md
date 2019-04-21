@@ -1,11 +1,10 @@
-# graduation_server
+# server
 
-基于egg搭建的nodejs服务
+基于 egg 搭建的 nodejs 服务
 
 ## QuickStart
 
 <!-- add docs here for user -->
-
 
 ### Development
 

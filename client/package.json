@@ -1,7 +1,7 @@
 {
   "name": "graduation",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "毕业设计项目",
   "author": "jiangdingyi <jiangdingyi@bignox.com>",
   "private": true,
   "scripts": {

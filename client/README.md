@@ -1,10 +1,10 @@
-# graduation
+# client
 
-> 基于vue框架搭建的移动端招聘网站
+> 基于 vue 框架搭建的移动端招聘网站
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 

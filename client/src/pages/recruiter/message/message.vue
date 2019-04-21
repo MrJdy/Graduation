@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:37:55
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-17 19:20:52
+ * @Last Modified time: 2019-04-21 12:51:24
  */
 <template>
   <div class="message-container">
@@ -33,6 +33,7 @@ export default {
 <style lang="scss" scoped>
 .message-container {
   width: 7.5rem;
+  padding-top: 1rem;
   .head-container {
     width: 7.5rem;
     height: 1rem;
