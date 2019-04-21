@@ -25,7 +25,13 @@
       <p class="title">职位详情</p>
       <pre class="content">{{this.positionData.position_details}}</pre>
     </div>
-    <div class="footer">立即沟通</div>
+    <div class="position-detail">
+      <p class="title">技能要求</p>
+      <pre class="content">{{this.positionData.position_require}}</pre>
+    </div>
+    <div class="footer-wrap">
+      <div class="footer">立即沟通</div>
+    </div>
   </div>
 </template>
 
@@ -88,8 +94,8 @@ export default {
 .position-detail-container {
   width: 7.5rem;
   background: #ffffff;
-  height: 100vh;
-  padding: 1rem 0.4rem 0 0.4rem;
+  min-height: 100vh;
+  padding: 1rem 0.4rem 1.2rem 0.4rem;
   position: relative;
   .head-container {
     z-index: 111;
@@ -151,22 +157,29 @@ export default {
     .content {
       color: #666666;
       font-size: 0.26rem;
-      line-height: .5rem;
+      line-height: 0.5rem;
       margin-top: 0.4rem;
     }
   }
-  .footer {
-    width: 7.1rem;
-    height: 0.8rem;
-    background: #53cac3;
-    border-radius: 0.1rem;
-    line-height: 0.8rem;
-    text-align: center;
-    color: #ffffff;
-    font-size: 0.3rem;
+  .footer-wrap {
+    width: 7.5rem;
+    height: 1.2rem;
+    background: #ffffff;
+    overflow: hidden;
     position: fixed;
-    bottom: 0.2rem;
-    left: calc((100% - 7.5rem) / 2 + 0.2rem);
+    bottom: 0;
+    left: calc((100% - 7.5rem) / 2);
+    .footer {
+      width: 7.1rem;
+      height: 0.8rem;
+      background: #53cac3;
+      border-radius: 0.1rem;
+      line-height: 0.8rem;
+      text-align: center;
+      color: #ffffff;
+      font-size: 0.3rem;
+      margin: 0.2rem;
+    }
   }
 }
 </style>
