@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-07 10:26:59
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-04-16 23:29:54
+ * @Last Modified time: 2019-05-11 18:42:41
  */
 
 'use strict';
@@ -18,12 +18,16 @@ class Login extends Service {
     if (!queryResult) {
       // 插入一条数据
       const avatarList = [
-        'https://wx4.sinaimg.cn/mw690/006xTNWLly1g1wra9bf4pj30b40b40so.jpg',
-        'https://wx3.sinaimg.cn/mw690/006xTNWLly1g1wra9c274j30b40b4weo.jpg',
-        'https://wx4.sinaimg.cn/mw1024/006xTNWLly1g1wra9c3ivj30b40b4mxa.jpg',
-        'https://wx4.sinaimg.cn/mw690/006xTNWLly1g1wra9gzr6j30b40b4weg.jpg',
+        'http://39.107.121.241:7001/avatar/001.jpg',
+        'http://39.107.121.241:7001/avatar/002.jpg',
+        'http://39.107.121.241:7001/avatar/003.jpg',
+        'http://39.107.121.241:7001/avatar/005.jpg',
+        'http://39.107.121.241:7001/avatar/006.jpg',
+        'http://39.107.121.241:7001/avatar/007.jpg',
+        'http://39.107.121.241:7001/avatar/008.jpg',
+        'http://39.107.121.241:7001/avatar/009.jpg',
       ];
-      const index = Math.floor(Math.random() * 4);
+      const index = Math.floor(Math.random() * 8);
       const user_avatar = avatarList[index];
       const result = await this.app.mysql.insert('userInfo', {
         phone_num: data.phone,
