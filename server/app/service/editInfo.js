@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:40:06
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-05-28 10:49:46
+ * @Last Modified time: 2019-05-28 16:37:25
  */
 
 'use strict';
@@ -28,14 +28,14 @@ class EditInfo extends Service {
         },
       };
       const updateResult = await this.app.mysql.update(
-        'positionInfo',
+        'position_info',
         params,
         options
       );
       const status = updateResult.affectedRows === 1;
       return status;
     }
-    const insertResult = await this.app.mysql.insert('positionInfo', params);
+    const insertResult = await this.app.mysql.insert('position_info', params);
     const status = insertResult.affectedRows === 1;
     return status;
   }
@@ -60,14 +60,14 @@ class EditInfo extends Service {
         },
       };
       const updateResult = await this.app.mysql.update(
-        'companyInfo',
+        'company_info',
         params,
         options
       );
       const status = updateResult.affectedRows === 1;
       return status;
     }
-    const insertResult = await this.app.mysql.insert('companyInfo', params);
+    const insertResult = await this.app.mysql.insert('company_info', params);
     const status = insertResult.affectedRows === 1;
     return status;
   }
@@ -84,7 +84,7 @@ class EditInfo extends Service {
       },
     };
     const updateResult = await this.app.mysql.update(
-      'userInfo',
+      'user_info',
       params,
       options
     );
@@ -111,14 +111,14 @@ class EditInfo extends Service {
         },
       };
       const updateResult = await this.app.mysql.update(
-        'userResume',
+        'user_resume',
         params,
         options
       );
       const status = updateResult.affectedRows === 1;
       return status;
     }
-    const insertResult = await this.app.mysql.insert('userResume', params);
+    const insertResult = await this.app.mysql.insert('user_resume', params);
     const status = insertResult.affectedRows === 1;
     return status;
   }

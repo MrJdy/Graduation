@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-13 09:40:06
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-05-28 14:54:25
+ * @Last Modified time: 2019-05-28 16:38:37
  */
 
 'use strict';
@@ -10,20 +10,20 @@ const Service = require('egg').Service;
 
 class queryInfo extends Service {
   async queryCompany(data) {
-    const queryResult = await this.app.mysql.get('companyInfo', {
+    const queryResult = await this.app.mysql.get('company_info', {
       phone_num: data.phone,
     });
     return queryResult;
   }
 
   async queryAllCompany(data) {
-    const queryCompany = await this.app.mysql.select('companyInfo');
+    const queryCompany = await this.app.mysql.select('company_info');
     for (let i = 0; i < queryCompany.length; i++) {
-      const queryUser = await this.app.mysql.get('userInfo', {
+      const queryUser = await this.app.mysql.get('user_info', {
         phone_num: queryCompany[i].phone_num,
       });
       queryCompany[i].user_avatar = queryUser.user_avatar;
-      const queryLike = await this.app.mysql.get('likeCompany', {
+      const queryLike = await this.app.mysql.get('like_company', {
         phone_num: data.phone,
       });
       if (queryLike && queryLike.company_list.length > 0) {
@@ -41,22 +41,19 @@ class queryInfo extends Service {
   }
 
   async queryLikeCompany(data) {
-    const queryLike = await this.app.mysql.get('likeCompany', {
+    const queryLike = await this.app.mysql.get('like_company', {
       phone_num: data.phone,
     });
     const companyList = JSON.parse(queryLike.company_list);
     const likeCompanyData = [];
     for (let i = 0; i < companyList.length; i++) {
-      const queryCompany = await this.app.mysql.get('companyInfo', {
+      const queryCompany = await this.app.mysql.get('company_info', {
         company_id: companyList[i],
       });
-      const queryUserInfo = await this.app.mysql.get('userInfo', {
+      const queryUserInfo = await this.app.mysql.get('user_info', {
         phone_num: queryCompany.phone_num,
       });
       queryCompany.user_avatar = queryUserInfo.user_avatar;
-      // const queryLike = await this.app.mysql.get('likeCompany', {
-      //   phone_num: data.phone,
-      // });
       if (companyList.indexOf(queryCompany.company_id) > -1) {
         queryCompany.isCollection = true;
       } else {
@@ -68,14 +65,14 @@ class queryInfo extends Service {
   }
 
   async queryPosition(data) {
-    const queryCompany = await this.app.mysql.get('companyInfo', {
+    const queryCompany = await this.app.mysql.get('company_info', {
       phone_num: data.phone,
     });
 
-    const queryUserInfo = await this.app.mysql.get('userInfo', {
+    const queryUserInfo = await this.app.mysql.get('user_info', {
       phone_num: data.phone,
     });
-    const queryPosition = await this.app.mysql.select('positionInfo', {
+    const queryPosition = await this.app.mysql.select('position_info', {
       where: { company_id: queryCompany.company_id },
       columns: [
         'position_id',
@@ -98,15 +95,15 @@ class queryInfo extends Service {
   }
 
   async queryAllPosition(data) {
-    const queryPosition = await this.app.mysql.select('positionInfo');
+    const queryPosition = await this.app.mysql.select('position_info');
     for (let i = 0; i < queryPosition.length; i++) {
-      const queryCompany = await this.app.mysql.get('companyInfo', {
+      const queryCompany = await this.app.mysql.get('company_info', {
         company_id: queryPosition[i].company_id,
       });
-      const queryUserInfo = await this.app.mysql.get('userInfo', {
+      const queryUserInfo = await this.app.mysql.get('user_info', {
         phone_num: queryCompany.phone_num,
       });
-      const queryLike = await this.app.mysql.get('likePosition', {
+      const queryLike = await this.app.mysql.get('like_position', {
         phone_num: data.phone,
       });
       if (queryLike && queryLike.position_list.length > 0) {
@@ -128,19 +125,19 @@ class queryInfo extends Service {
   }
 
   async queryLikePosition(data) {
-    const queryLike = await this.app.mysql.get('likePosition', {
+    const queryLike = await this.app.mysql.get('like_position', {
       phone_num: data.phone,
     });
     const positionList = JSON.parse(queryLike.position_list);
     const likePositionData = [];
     for (let i = 0; i < positionList.length; i++) {
-      const queryPosition = await this.app.mysql.get('positionInfo', {
+      const queryPosition = await this.app.mysql.get('position_info', {
         position_id: positionList[i],
       });
-      const queryCompany = await this.app.mysql.get('companyInfo', {
+      const queryCompany = await this.app.mysql.get('company_info', {
         company_id: queryPosition.company_id,
       });
-      const queryUserInfo = await this.app.mysql.get('userInfo', {
+      const queryUserInfo = await this.app.mysql.get('user_info', {
         phone_num: queryCompany.phone_num,
       });
       if (positionList.indexOf(queryPosition.position_id) > -1) {
@@ -158,7 +155,7 @@ class queryInfo extends Service {
   }
 
   async queryResume(data) {
-    const queryResult = await this.app.mysql.get('userResume', {
+    const queryResult = await this.app.mysql.get('user_resume', {
       phone_num: data.phone,
     });
     if (queryResult) {

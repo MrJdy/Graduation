@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-07 10:26:59
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-05-28 14:54:19
+ * @Last Modified time: 2019-05-28 16:34:47
  */
 
 'use strict';
@@ -11,7 +11,7 @@ const Service = require('egg').Service;
 class Login extends Service {
   async login(data) {
     // 通过用户输入手机号查询，获取查询结果
-    const queryResult = await this.app.mysql.get('userInfo', {
+    const queryResult = await this.app.mysql.get('user_info', {
       phone_num: data.phone,
     });
     // 如果没有注册过自动为其注册
@@ -29,7 +29,7 @@ class Login extends Service {
       ];
       const index = Math.floor(Math.random() * 8);
       const user_avatar = avatarList[index];
-      const result = await this.app.mysql.insert('userInfo', {
+      const result = await this.app.mysql.insert('user_info', {
         phone_num: data.phone,
         user_name: data.userName,
         user_avatar,

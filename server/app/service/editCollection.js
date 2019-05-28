@@ -2,7 +2,7 @@
  * @Author: 姜定一
  * @Date: 2019-04-16 23:25:22
  * @Last Modified by: 姜定一
- * @Last Modified time: 2019-05-28 14:54:13
+ * @Last Modified time: 2019-05-28 16:33:48
  */
 
 'use strict';
@@ -10,7 +10,7 @@ const Service = require('egg').Service;
 
 class EditCollection extends Service {
   async editCollectionPosition(data) {
-    const queryResult_1 = await this.app.mysql.get('likePosition', {
+    const queryResult_1 = await this.app.mysql.get('like_position', {
       phone_num: data.phone,
     });
     // 用户第一次收藏职位，插入一条数据
@@ -18,7 +18,7 @@ class EditCollection extends Service {
       const arr = [];
       arr.push(data.positionId);
       const positionList = JSON.stringify(arr);
-      const result = await this.app.mysql.insert('likePosition', {
+      const result = await this.app.mysql.insert('like_position', {
         phone_num: data.phone,
         position_list: positionList,
       });
@@ -26,7 +26,7 @@ class EditCollection extends Service {
       return status;
     }
     // 不是第一次，1、获取已有的数据
-    const queryResult_2 = await this.app.mysql.get('likePosition', {
+    const queryResult_2 = await this.app.mysql.get('like_position', {
       phone_num: data.phone,
     });
     // 2、将position_list解析
@@ -46,7 +46,7 @@ class EditCollection extends Service {
       },
     };
     const updateResult = await this.app.mysql.update(
-      'likePosition',
+      'like_position',
       { position_list: positionList },
       options
     );
@@ -55,7 +55,7 @@ class EditCollection extends Service {
   }
 
   async editCollectionCompany(data) {
-    const queryResult_1 = await this.app.mysql.get('likeCompany', {
+    const queryResult_1 = await this.app.mysql.get('like_company', {
       phone_num: data.phone,
     });
     // 用户第一次收藏公司，插入一条数据
@@ -63,7 +63,7 @@ class EditCollection extends Service {
       const arr = [];
       arr.push(data.companyId);
       const companyList = JSON.stringify(arr);
-      const result = await this.app.mysql.insert('likeCompany', {
+      const result = await this.app.mysql.insert('like_company', {
         phone_num: data.phone,
         company_list: companyList,
       });
@@ -71,7 +71,7 @@ class EditCollection extends Service {
       return status;
     }
     // 不是第一次，1、获取已有的数据
-    const queryResult_2 = await this.app.mysql.get('likeCompany', {
+    const queryResult_2 = await this.app.mysql.get('like_company', {
       phone_num: data.phone,
     });
     // 2、将company_list解析
@@ -91,7 +91,7 @@ class EditCollection extends Service {
       },
     };
     const updateResult = await this.app.mysql.update(
-      'likeCompany',
+      'like_company',
       { company_list: companyList },
       options
     );
